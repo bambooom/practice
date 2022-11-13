@@ -1,3 +1,5 @@
+// 没太懂这题
+
 function curry(fn) {
   return function curried(...args) {
     // if number of arguments match
