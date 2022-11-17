@@ -18,10 +18,14 @@ function flat_r(arr, depth = 1) {
 
 // recursive reduce
 function flat_reduce(arr, depth = 1) {
-  return depth ?
-    arr.reduce((acc, cur) => {
-      return [...acc, ...(Array.isArray(cur) ? flat_reduce(cur, depth - 1) : [cur])];
-    }, []) : arr;
+  return depth
+    ? arr.reduce((acc, cur) => {
+        return [
+          ...acc,
+          ...(Array.isArray(cur) ? flat_reduce(cur, depth - 1) : [cur]),
+        ];
+      }, [])
+    : arr;
 }
 
 // iterative solution
@@ -38,13 +42,13 @@ function flat_i(arr, depth = 1) {
  * O(items at depth * depth)
  */
 function flat_stack(arr, depth = 1) {
-  const stack = arr.map((item) => [item, depth]);
+  const stack = arr.map(item => [item, depth]);
   const res = [];
 
   while (stack.length > 0) {
     const [item, itemDepth] = stack.pop();
     if (Array.isArray(item) && itemDepth > 0) {
-      stack.push(...item.map((i) => [i, itemDepth - 1]));
+      stack.push(...item.map(i => [i, itemDepth - 1]));
     } else {
       res.push(item);
     }

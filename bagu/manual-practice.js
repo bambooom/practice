@@ -39,9 +39,11 @@ function formatNumber(num) {
     return s;
   }
   const first = len % 3;
-  return (first > 0 ? (int.slice(0, first) + ',') : '')
-    + int.slice(first).match(/\d{3}/g).join(',')
-    + (decimal ? ('.' + decimal) : '');
+  return (
+    (first > 0 ? int.slice(0, first) + ',' : '') +
+    int.slice(first).match(/\d{3}/g).join(',') +
+    (decimal ? '.' + decimal : '')
+  );
 }
 
 // console.log(formatNumber(1234567.89)); // 1,234,567.89

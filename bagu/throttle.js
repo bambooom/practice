@@ -17,7 +17,6 @@ call A is triggered right way because not in waiting time
 function call B is swallowed because B, C is in the cooling time from A, and C is latter.
  */
 
-
 /**
  * @param {(...args:any[]) => any} func
  * @param {number} wait
@@ -26,11 +25,11 @@ function call B is swallowed because B, C is in the cooling time from A, and C i
 function throttle(func, wait) {
   let waiting = false;
   let lastArgs = null;
-  return function(...args) {
+  return function (...args) {
     if (!waiting) {
       waiting = true;
       func.apply(this, args);
-      let timeout = () => {
+      const timeout = () => {
         setTimeout(() => {
           waiting = false;
           if (lastArgs) {
@@ -45,7 +44,7 @@ function throttle(func, wait) {
     } else {
       lastArgs = args;
     }
-  }
+  };
 }
 
 // let currentTime = 0;
@@ -76,7 +75,7 @@ trailing: whether to invoke after the delay.
 default case with {leading: true, trailing: true}
  */
 
-function throttle_option(func, wait, { leading = true, trailing = true } = {}) {
+function throttle_option(func, wait, {leading = true, trailing = true} = {}) {
   let lastArgs = null;
   let timer = null;
 
@@ -106,7 +105,7 @@ function throttle_option(func, wait, { leading = true, trailing = true } = {}) {
 function throttle_option2(
   func,
   wait,
-  options = { leading: true, trailing: true }
+  options = {leading: true, trailing: true}
 ) {
   let timer = null;
   let lastContext = null;

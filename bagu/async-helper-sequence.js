@@ -6,7 +6,7 @@ function sequence(funcs) {
     // we can use queue also here check BFE solution
     let nextFuncIndex = 0; // closure
 
-    const callNextFunc = (data) => {
+    const callNextFunc = data => {
       // when no more function is to be called
       if (nextFuncIndex === funcs.length) {
         finalCB(undefined, data);
@@ -19,7 +19,7 @@ function sequence(funcs) {
 
       // every func is of the form of (callback, data) and callback is of the form (error, data)
       // callback gets called after a settimeout once the func is done, we then call the next func if no error
-      let cb = (error, newData) => {
+      const cb = (error, newData) => {
         error ? finalCB(error, undefined) : callNextFunc(newData);
       };
       nextFunc(cb, data);
@@ -34,7 +34,7 @@ function sequence(funcs) {
  */
 function parallel(funcs) {
   return function (finalCB, data) {
-    const nextFuncCall = (data) => {
+    const nextFuncCall = data => {
       if (!funcs.length) {
         finalCB(undefined, data);
         return;
@@ -87,7 +87,7 @@ function sequence_withAsyncAwait(funcs) {
   return async function (callback, initData) {
     let ret = initData;
     try {
-      for (let func of funcs) {
+      for (const func of funcs) {
         ret = await promisify(func, ret);
       }
     } catch (ex) {
@@ -110,20 +110,20 @@ function sequence(funcs) {
 
     const finalPromise = funcs.reduce((accumlatorPromise, currentFn) => {
       return accumlatorPromise
-        .then((data) => {
+        .then(data => {
           return promisify(currentFn, data); // this will create a new promise and run the executor which will resolve/reject
         })
-        .catch((err) => {
+        .catch(err => {
           return Promise.reject(err);
         });
     }, starterPromise);
 
     // last resolve/reject promise in the accumulator
     finalPromise
-      .then((data) => {
+      .then(data => {
         finalCallback(undefined, data);
       })
-      .catch((err) => {
+      .catch(err => {
         finalCallback(err);
       });
   };

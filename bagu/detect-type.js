@@ -18,4 +18,4 @@ console.log(detectType(new Date())); // 'date'
 console.log(detectType(new Set())); // 'set'
 console.log(detectType(true)); // 'boolean'
 console.log(detectType(new Boolean(true))); // 'boolean'? should be 'object'?
-console.log(detectType({ a: 1 })); // object
+console.log(detectType({a: 1})); // object

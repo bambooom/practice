@@ -31,7 +31,6 @@ class LRUCache {
   }
 }
 
-
 const lruCache = new LRUCache(5);
 lruCache.set('name', '小猪课堂');
 lruCache.set('age', 22);

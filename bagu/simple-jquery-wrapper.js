@@ -11,7 +11,6 @@ The wrapper only needs to have css(propertyName: string, value: any)
 
  */
 
-
 /**
  * @param {HTMLElement} el - element to be wrapped
  */

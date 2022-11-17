@@ -7,7 +7,7 @@ const timers = new Set();
 
 window.setTimeout = function (fn, delay, ...args) {
   let timerId;
-  let callback = () => {
+  const callback = () => {
     fn.apply(args);
     timers.delete(timerId);
   };
@@ -22,7 +22,7 @@ window.clearTimeout = function (timerId) {
 };
 
 function clearAllTimeout() {
-  for (let timerId of timers) {
+  for (const timerId of timers) {
     clearTimeout(timerId);
   }
 }

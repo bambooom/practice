@@ -65,7 +65,7 @@ const findCorrespondingNode4 = (rootA, rootB, target) => {
   if (rootA === target) return rootB;
 
   // we can track 'target' in rootB using indexes stored during tracing 'target' in rootA
-  let path = getRootAPath(rootA, target);
+  const path = getRootAPath(rootA, target);
 
   // reduceRight is same as reduce but it iterate values from right to left
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight
@@ -76,7 +76,7 @@ const findCorrespondingNode4 = (rootA, rootB, target) => {
 
 // get path from target to rootA in the form of index arr, index pointing to position of a node in its parent HTML collection
 function getRootAPath(rootA, target) {
-  let path = [];
+  const path = [];
 
   let node = target;
 

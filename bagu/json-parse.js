@@ -28,10 +28,12 @@ function parse(str) {
   if (str[0] === '"') {
     return str.slice(1, -1);
   }
-  if (+str === +str) { // number
+  if (+str === +str) {
+    // number
     return Number(str);
   }
-  if (str[0] === '{') { // object
+  if (str[0] === '{') {
+    // object
     return str
       .slice(1, -1)
       .split(',')
@@ -43,10 +45,11 @@ function parse(str) {
         return acc;
       }, {});
   }
-  if (str[0] === '[') { // array
+  if (str[0] === '[') {
+    // array
     return str
       .slice(1, -1)
       .split(',')
-      .map((value) => parse(value));
+      .map(value => parse(value));
   }
 }

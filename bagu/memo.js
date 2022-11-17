@@ -18,15 +18,15 @@ function memo(func, resolver) {
 const func = (arg1, arg2) => {
   return arg1 + arg2;
 };
-const memoed = memo(func, () => 'samekey')
+const memoed = memo(func, () => 'samekey');
 
-console.log(memoed(1, 2))
+console.log(memoed(1, 2));
 // 3, func is called, 3 is cached with key 'samekey'
 
-console.log(memoed(1, 2))
+console.log(memoed(1, 2));
 // 3, since key is the same, 3 is returned without calling func
 
-console.log(memoed(1, 3))
+console.log(memoed(1, 3));
 // 3, since key is the same, 3 is returned without calling func
 
 // ----------------------
@@ -60,12 +60,12 @@ const memoFunc = memo_map(testThis);
 const testSubject = {
   val: 1,
   memo: memoFunc,
-}
+};
 
 const testSubject2 = {
   val: 2,
   memo: memoFunc,
-}
+};
 
 // 1_1
 console.log(testSubject.memo(1));

@@ -17,7 +17,7 @@ function curry(fn) {
 curry.placeholder = Symbol();
 
 function mergeArgs(argsTo, argsFrom, placeholder) {
-  const mappedArgsTo = argsTo.map((item) =>
+  const mappedArgsTo = argsTo.map(item =>
     item === placeholder && argsFrom.length ? argsFrom.shift() : item
   );
   return [...mappedArgsTo, ...argsFrom];
@@ -28,18 +28,18 @@ function isArgsMet(args, fn, placeholder) {
     return false;
   }
 
-  return args.slice(0, fn.length).every((item) => item !== placeholder);
+  return args.slice(0, fn.length).every(item => item !== placeholder);
 }
 
-const  join = (a, b, c) => {
-  return `${a}_${b}_${c}`
-}
+const join = (a, b, c) => {
+  return `${a}_${b}_${c}`;
+};
 
-const curriedJoin = curry(join)
-const _ = curry.placeholder
+const curriedJoin = curry(join);
+const _ = curry.placeholder;
 
-console.log(curriedJoin(1, 2, 3)) // '1_2_3'
+console.log(curriedJoin(1, 2, 3)); // '1_2_3'
 
-console.log(curriedJoin(_, 2)(1, 3)) // '1_2_3'
+console.log(curriedJoin(_, 2)(1, 3)); // '1_2_3'
 
-console.log(curriedJoin(_, _, _)(1)(_, 3)(2)) // '1_2_3'
+console.log(curriedJoin(_, _, _)(1)(_, 3)(2)); // '1_2_3'

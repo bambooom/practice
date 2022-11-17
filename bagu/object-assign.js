@@ -9,7 +9,7 @@ function objectAssign(target, ...sources) {
     throw new Error('Not an object');
   }
 
-  if (typeof target !== `object`) {
+  if (typeof target !== 'object') {
     target = Object(target);
   }
 
@@ -77,7 +77,6 @@ const source = Object.create(
 );
 
 console.log(objectAssign(source));
-
 
 function shallowCopy(obj) {
   return Object.create(

@@ -5,7 +5,7 @@
  */
 function debounce(func, wait) {
   let timer = null;
-  return (args) => {
+  return args => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       func(...args);
@@ -19,7 +19,7 @@ function debounce(func, wait) {
 function debounce_option(
   func,
   wait,
-  option = { leading: false, trailing: true }
+  option = {leading: false, trailing: true}
 ) {
   // in basic debounce, we kept only timerId
   // here, we will keep lastArgs too as we trailing function call with last arguments

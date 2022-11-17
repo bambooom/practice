@@ -1,6 +1,6 @@
 function shallowClone(obj) {
   const newObj = {};
-  for (let prop in obj) {
+  for (const prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       newObj[prop] = obj[prop];
     }
@@ -18,7 +18,7 @@ function deepClone(obj, hash = new WeakMap()) {
   const cloneObj = new obj.constructor();
   // 找到的是所属类原型上的constructor,而原型上的 constructor指向的是当前类本身
   hash.set(obj, cloneObj);
-  for (let key in obj) {
+  for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       // 实现一个递归拷贝
       cloneObj[key] = deepClone(obj[key], hash);
