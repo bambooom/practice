@@ -6,7 +6,7 @@
 // simple approach: convert the integer to string
 // but it requires extra memory for string and array
 // this maybe wasteful
-function isPalindrome(x: number): boolean {
+export function isPalindrome(x: number): boolean {
   if (x < 0) return false;
   const s = x.toString();
   return s.split('').reverse().join('') === s;
@@ -17,7 +17,7 @@ function isPalindrome(x: number): boolean {
  * but using / and % to revert half of the integer from right
  * then compare to the previous half
  */
-function isPalindromeInteger(x: number): boolean {
+export function isPalindromeInteger(x: number): boolean {
   // Special cases:
   // when x < 0, x is not a palindrome.
   // Also if the last digit of the number is 0, in order to be a palindrome,
@@ -30,7 +30,7 @@ function isPalindromeInteger(x: number): boolean {
     revertedNumber = revertedNumber * 10 + (x % 10); // add last digit to reverted
     x = Math.floor(x / 10); // remove last digit
   }
-  return x === revertedNumber || x === revertedNumber / 10;
+  return x === revertedNumber || x === Math.floor(revertedNumber / 10);
   //if even digits, then x === revertedNumber, 1221, 12=12
   //if odd digits, last step, x === revertedNumber / 10; 121, 1 = floor(12/10)
 }
