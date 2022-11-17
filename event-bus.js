@@ -1,3 +1,5 @@
+// https://segmentfault.com/a/1190000041538256
+
 class EventBus {
   constructor() {
     this._events = {};
