@@ -31,5 +31,5 @@ export function plusOne(digits: number[]): number[] {
   return digits;
 }
 
-console.log(plusOne([1, 2, 3])); // [1,2,4]
-console.log(plusOne([9])); // [1,0]
+// console.log(plusOne([1, 2, 3])); // [1,2,4]
+// console.log(plusOne([9])); // [1,0]
