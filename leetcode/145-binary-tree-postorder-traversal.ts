@@ -26,3 +26,18 @@ export function postorderTraversal(root: TreeNode | null): number[] {
 
   return res;
 }
+
+// recurvise
+function postorderTraversal2(root: TreeNode | null): number[] {
+  const result: number[] = [];
+  const recursive = (node: TreeNode | null) => {
+    if (!node) return;
+
+    if (node.left) recursive(node.left);
+    if (node.right) recursive(node.right);
+    result.push(node.val);
+  };
+
+  recursive(root);
+  return result;
+}
