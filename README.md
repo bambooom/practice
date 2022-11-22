@@ -2,6 +2,7 @@
 
 - [bfe.dev](https://bigfrontend.dev/)
 - [leetcode](https://leetcode.com/)
+- [exercism](https://exercism.org/tracks/typescript)
 
 ## set-up
 
