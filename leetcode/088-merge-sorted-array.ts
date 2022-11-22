@@ -13,15 +13,15 @@ export function merge(
   n: number,
 ): void {
   let insertPos = m + n - 1; // last index of nums1
-  m -= 1;
-  n -= 1;
+  m--;
+  n--;
   while (n >= 0) {
     if (nums1[m] > nums2[n]) {
       nums1[insertPos] = nums1[m]; // insert the larger one at the last
-      m -= 1;
+      m--;
     } else {
       nums1[insertPos] = nums2[n];
-      n -= 1;
+      n--;
     }
     insertPos -= 1;
   }
