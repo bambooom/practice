@@ -2,14 +2,7 @@
 
 // Given head, the head of a linked list, determine if the linked list has a cycle in it.
 
-export class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
+import { ListNode } from './util';
 
 // solution 1: hash table, space O(n), time O(n)
 function hasCycle(head: ListNode | null): boolean {

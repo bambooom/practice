@@ -1,14 +1,7 @@
 // https://leetcode.com/problems/remove-linked-list-elements/
 // Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
 
-export class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
+import { ListNode } from './util';
 
 function removeElements(head: ListNode | null, val: number): ListNode | null {
   while (head && head.val === val) {

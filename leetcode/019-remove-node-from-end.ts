@@ -3,14 +3,7 @@
 // Input: head = [1,2,3,4,5], n = 2
 // Output: [1,2,3,5]
 
-export class ListNode {
-  val: number;
-  next: ListNode | null;
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
+import { ListNode } from './util';
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   // move currentNode n steps into list
