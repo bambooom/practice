@@ -20,8 +20,8 @@ function matrixReshape(mat: number[][], r: number, c: number): number[][] {
 // using Using division and modulus approach
 // time: O(m*n), space: O(m*n)
 function matrixReshape2(mat: number[][], r: number, c: number): number[][] {
-  const m = mat[0].length;
-  const n = mat.length;
+  const m = mat[0].length; // col
+  const n = mat.length; // row
   if (m * n !== r * c) return mat;
   const res = [];
   for (let i = 0; i < r; i++) {
