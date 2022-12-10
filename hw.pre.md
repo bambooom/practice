@@ -1,7 +1,36 @@
-- 字符串：3，49，30
-- 线性表：86，16，27，732
-- 队列：641，406，899
-- 栈：946，116，117，895
-- 哈希表：61，729，25，554
-- dfs：105，112，98，494，547，1254
-- bfs：1091，1129，102，101，752
+- 字符串：
+  - [x] [3 longest substring without repeating characters](./leetcode/003-longest-substr-uniq-char.ts)
+  - [x] [49 group anagrams](./leetcode/049-group-anagrams.ts)
+  - [ ] 30
+- 线性表：
+  - [x] [86 partition list](./leetcode/086-partition-list.ts)
+  - [ ] 16
+  - [x] [27 remove element in place](./leetcode/027-remove-element-in-place.ts)
+  - [ ] 732
+- 队列：
+  - [x] [641 circular deque](./leetcode/641-circular-deque.ts)
+  - [ ] 406
+  - [ ] 899
+- 栈：
+  - [ ] 946
+  - [ ] 116
+  - [ ] 117
+  - [ ] 895
+- 哈希表：
+  - [ ] 61
+  - [ ] 729
+  - [ ] 25
+  - [ ] 554
+- dfs：
+  - [ ] 105
+  - [ ] 112
+  - [ ] 98
+  - [ ] 494
+  - [ ] 547
+  - [ ] 1254
+- bfs：
+  - [ ] 1091
+  - [ ] 1129
+  - [ ] 102
+  - [ ] 101
+  - [ ] 752
