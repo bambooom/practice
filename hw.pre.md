@@ -13,24 +13,24 @@
   - [ ] 899
 - 栈：
   - [ ] 946
-  - [ ] 116
+  - [x] [116 populating next right pointers](./leetcode/116-populating-next-right-pointers.ts)
   - [ ] 117
   - [ ] 895
 - 哈希表：
   - [ ] 61
-  - [ ] 729
+  - [x] [729 calendar 1](./leetcode/729-my-calendar-1.ts)
   - [ ] 25
   - [ ] 554
 - dfs：
   - [ ] 105
-  - [ ] 112
-  - [ ] 98
+  - [x] [112 path sum](./leetcode/112-path-sum.ts)
+  - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
   - [ ] 494
   - [ ] 547
   - [ ] 1254
 - bfs：
   - [ ] 1091
   - [ ] 1129
-  - [ ] 102
-  - [ ] 101
+  - [x] [102 binary tree level order traversal](./leetcode/102-binary-tree-level-order-traversal.ts)
+  - [x] [101 symmetric tree](./leetcode/101-symmetric-tree.ts)
   - [ ] 752
