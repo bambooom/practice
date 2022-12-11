@@ -13,11 +13,11 @@
   - [ ] 899
 - 栈：
   - [ ] 946
-  - [x] [116 populating next right pointers](./leetcode/116-populating-next-right-pointers.ts)
-  - [ ] 117
+  - [x] [116 populating next right pointers for perfect binary tree](./leetcode/116-populating-next-right-pointers.ts)
+  - [x] [117 populating next right pointers for binary tree](./leetcode/117-populating-next-right-pointers-2.ts)
   - [ ] 895
 - 哈希表：
-  - [ ] 61
+  - [x] [61 rotate list](./leetcode/061-rotate-list.ts)
   - [x] [729 calendar 1](./leetcode/729-my-calendar-1.ts)
   - [ ] 25
   - [ ] 554
@@ -26,7 +26,7 @@
   - [x] [112 path sum](./leetcode/112-path-sum.ts)
   - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
   - [ ] 494
-  - [ ] 547
+  - [x] [547 number of provinces](./leetcode/547-number-of-provinces.ts)
   - [ ] 1254
 - bfs：
   - [ ] 1091

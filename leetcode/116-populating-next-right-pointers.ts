@@ -49,8 +49,8 @@ function connect2(root: Node | null): Node | null {
   }
 
   if (root.left.left !== null) {
-    root.left = connect(root.left);
-    root.right = connect(root.right);
+    root.left = connect2(root.left);
+    root.right = connect2(root.right);
   }
 
   return root;
