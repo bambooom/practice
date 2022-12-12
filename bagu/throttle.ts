@@ -1,3 +1,5 @@
+// 节流：n 秒内只运行一次，若在 n 秒内重复触发，只执行一次
+
 /**
  * In case you forgot, throttle(func, delay) will return a throttled function, which will invoke the func at a max frequency no matter how throttled one is called.
 
@@ -22,10 +24,10 @@ function call B is swallowed because B, C is in the cooling time from A, and C i
  * @param {number} wait
  * @returns {(...args:any[]) => any}
  */
-function throttle(func, wait) {
+function throttle(func, wait: number) {
   let waiting = false;
-  let lastArgs = null;
-  return function (...args) {
+  let lastArgs: any[] | null = null;
+  return function (...args: any[]) {
     if (!waiting) {
       waiting = true;
       func.apply(this, args);
@@ -75,9 +77,13 @@ trailing: whether to invoke after the delay.
 default case with {leading: true, trailing: true}
  */
 
-function throttle_option(func, wait, {leading = true, trailing = true} = {}) {
-  let lastArgs = null;
-  let timer = null;
+function throttle_option(
+  func,
+  wait: number,
+  { leading = true, trailing = true } = {},
+) {
+  let lastArgs: any[] | null = null;
+  let timer: NodeJS.Timeout | null = null;
 
   const setTimer = () => {
     if (lastArgs && trailing) {
@@ -89,7 +95,7 @@ function throttle_option(func, wait, {leading = true, trailing = true} = {}) {
     }
   };
 
-  return function (...args) {
+  return function (...args: any[]) {
     if (!timer) {
       if (leading) {
         func.apply(this, args);
@@ -104,15 +110,16 @@ function throttle_option(func, wait, {leading = true, trailing = true} = {}) {
 // another solution, more detailed
 function throttle_option2(
   func,
-  wait,
-  options = {leading: true, trailing: true}
+  wait: number,
+  options = { leading: true, trailing: true },
 ) {
-  let timer = null;
+  let timer: NodeJS.Timeout | null = null;
   let lastContext = null;
-  let lastArgs = null;
+  let lastArgs: any[] | null = null;
   return function (...args) {
     // 1. if called within cool time, then store it for later call
     if (timer !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       lastContext = this;
       lastArgs = args;
       return;
@@ -123,6 +130,7 @@ function throttle_option2(
       func.call(this, ...args);
     } else {
       // save for trailing call if needed
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
       lastContext = this;
       lastArgs = args;
     }
@@ -141,5 +149,19 @@ function throttle_option2(
     };
 
     timer = setTimeout(timeup, wait);
+  };
+}
+
+// 闭包方法
+function throttle_closet(fn, delay: number) {
+  let timer: NodeJS.Timeout | null = null;
+  return function () {
+    if (!timer) {
+      timer = setTimeout(() => {
+        // eslint-disable-next-line prefer-rest-params
+        fn.apply(this, arguments);
+        timer = null;
+      }, delay);
+    }
   };
 }

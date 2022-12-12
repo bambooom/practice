@@ -1,4 +1,6 @@
-function shallowClone(obj) {
+/* eslint-disable no-prototype-builtins */
+
+function shallowClone(obj: Record<string, unknown>): Record<string, unknown> {
   const newObj = {};
   for (const prop in obj) {
     if (obj.hasOwnProperty(prop)) {
@@ -11,7 +13,7 @@ function shallowClone(obj) {
 function deepClone(obj, hash = new WeakMap()) {
   if (obj === null) return obj; // 如果是null或者undefined我就不进行拷贝操作
   if (obj instanceof Date) return new Date(obj);
-  if (obj instanceof RegExp) return new RegRxp(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
   // 可能是对象或者普通的值  如果是函数的话是不需要深拷贝
   if (typeof obj !== 'object') return obj;
   if (hash.get(obj)) return hash.get(obj);
