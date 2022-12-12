@@ -4,15 +4,15 @@
   - [ ] 30
 - 线性表：
   - [x] [86 partition list](./leetcode/086-partition-list.ts)
-  - [ ] 16
+  - [x] [16 3sum closest](./leetcode/016-3sum-closest.ts)
   - [x] [27 remove element in place](./leetcode/027-remove-element-in-place.ts)
   - [ ] 732
 - 队列：
   - [x] [641 circular deque](./leetcode/641-circular-deque.ts)
-  - [ ] 406
+  - [x] [406 queue reconstruction by height](./leetcode/406-queue-reconstruction-by-height.ts)
   - [ ] 899
 - 栈：
-  - [ ] 946
+  - [x] [946 validate stack seq](./leetcode/946-validate-stack-sequences.ts)
   - [x] [116 populating next right pointers for perfect binary tree](./leetcode/116-populating-next-right-pointers.ts)
   - [x] [117 populating next right pointers for binary tree](./leetcode/117-populating-next-right-pointers-2.ts)
   - [ ] 895
@@ -22,7 +22,7 @@
   - [ ] 25
   - [ ] 554
 - dfs：
-  - [ ] 105
+  - [x] [105 Construct Binary Tree from Preorder and Inorder Traversal](./leetcode/105-build-tree-from-preorder-inorder-traversal.ts)
   - [x] [112 path sum](./leetcode/112-path-sum.ts)
   - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
   - [ ] 494
