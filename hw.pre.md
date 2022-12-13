@@ -29,8 +29,8 @@
   - [x] [547 number of provinces](./leetcode/547-number-of-provinces.ts)
   - [ ] 1254
 - bfs：
-  - [ ] 1091
-  - [ ] 1129
+  - [x] [1091 shortest path in binary matrix](./leetcode/1091-shortest-path-in-binary-matrix.ts)
+  - [ ] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ?
   - [x] [102 binary tree level order traversal](./leetcode/102-binary-tree-level-order-traversal.ts)
   - [x] [101 symmetric tree](./leetcode/101-symmetric-tree.ts)
   - [ ] 752
