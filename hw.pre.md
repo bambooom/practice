@@ -1,7 +1,7 @@
 - 字符串：
   - [x] [3 longest substring without repeating characters](./leetcode/003-longest-substr-uniq-char.ts)
   - [x] [49 group anagrams](./leetcode/049-group-anagrams.ts)
-  - [ ] 30
+  - [x] [30 substring with concatenation of words](./leetcode/030-substring-with-concatenation-of-words.ts)
 - 线性表：
   - [x] [86 partition list](./leetcode/086-partition-list.ts)
   - [x] [16 3sum closest](./leetcode/016-3sum-closest.ts)
@@ -19,7 +19,7 @@
 - 哈希表：
   - [x] [61 rotate list](./leetcode/061-rotate-list.ts)
   - [x] [729 calendar 1](./leetcode/729-my-calendar-1.ts)
-  - [ ] 25
+  - [x] [25 reverse nodes in k group](./leetcode/025-reverse-nodes-in-k-group.ts)
   - [ ] 554
 - dfs：
   - [x] [105 Construct Binary Tree from Preorder and Inorder Traversal](./leetcode/105-build-tree-from-preorder-inorder-traversal.ts)
@@ -30,7 +30,7 @@
   - [ ] 1254
 - bfs：
   - [x] [1091 shortest path in binary matrix](./leetcode/1091-shortest-path-in-binary-matrix.ts)
-  - [ ] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ?
+  - [x] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ❓
   - [x] [102 binary tree level order traversal](./leetcode/102-binary-tree-level-order-traversal.ts)
   - [x] [101 symmetric tree](./leetcode/101-symmetric-tree.ts)
   - [ ] 752

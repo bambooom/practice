@@ -16,8 +16,7 @@ function detectCycle(head: ListNode | null): ListNode | null {
     }
   }
   return null;
-};
-
+}
 
 // use two pointers at diff speed
 function detectCycle2(head: ListNode | null): ListNode | null {
@@ -27,7 +26,8 @@ function detectCycle2(head: ListNode | null): ListNode | null {
   while (fast && fast.next && fast.next.next) {
     slow = slow?.next || null;
     fast = fast.next.next;
-    if (slow === fast) { // detected cycle, but need to find the position
+    if (slow === fast) {
+      // detected cycle, but need to find the position
       slow = head;
       while (slow !== fast) {
         slow = slow?.next || null;
