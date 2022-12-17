@@ -6,7 +6,7 @@
   - [x] [86 partition list](./leetcode/086-partition-list.ts)
   - [x] [16 3sum closest](./leetcode/016-3sum-closest.ts)
   - [x] [27 remove element in place](./leetcode/027-remove-element-in-place.ts)
-  - [ ] 732
+  - [x] [732 my calendar 3](./leetcode/732-my-calendar-3.tss)
 - 队列：
   - [x] [641 circular deque](./leetcode/641-circular-deque.ts)
   - [x] [406 queue reconstruction by height](./leetcode/406-queue-reconstruction-by-height.ts)
@@ -20,12 +20,12 @@
   - [x] [61 rotate list](./leetcode/061-rotate-list.ts)
   - [x] [729 calendar 1](./leetcode/729-my-calendar-1.ts)
   - [x] [25 reverse nodes in k group](./leetcode/025-reverse-nodes-in-k-group.ts)
-  - [ ] 554
+  - [x] [554 brick wall (prefix sum)](./leetcode/554-brick-wall.ts)
 - dfs：
   - [x] [105 Construct Binary Tree from Preorder and Inorder Traversal](./leetcode/105-build-tree-from-preorder-inorder-traversal.ts)
   - [x] [112 path sum](./leetcode/112-path-sum.ts)
   - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
-  - [ ] 494
+  - [x] [494 target sum](./leetcode/494-target-sum.ts)
   - [x] [547 number of provinces](./leetcode/547-number-of-provinces.ts)
   - [ ] 1254
 - bfs：
@@ -33,4 +33,4 @@
   - [x] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ❓
   - [x] [102 binary tree level order traversal](./leetcode/102-binary-tree-level-order-traversal.ts)
   - [x] [101 symmetric tree](./leetcode/101-symmetric-tree.ts)
-  - [ ] 752
+  - [x] [752 open lock](./leetcode/752-open-lock.ts) ?
