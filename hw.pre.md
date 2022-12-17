@@ -10,12 +10,12 @@
 - 队列：
   - [x] [641 circular deque](./leetcode/641-circular-deque.ts)
   - [x] [406 queue reconstruction by height](./leetcode/406-queue-reconstruction-by-height.ts)
-  - [ ] 899
+  - [x] [899 orderly queue](./leetcode/899-orderly-queue.ts)
 - 栈：
   - [x] [946 validate stack seq](./leetcode/946-validate-stack-sequences.ts)
   - [x] [116 populating next right pointers for perfect binary tree](./leetcode/116-populating-next-right-pointers.ts)
   - [x] [117 populating next right pointers for binary tree](./leetcode/117-populating-next-right-pointers-2.ts)
-  - [ ] 895
+  - [x] [895 max frequency stack](./leetcode/895-max-freq-stack.ts)
 - 哈希表：
   - [x] [61 rotate list](./leetcode/061-rotate-list.ts)
   - [x] [729 calendar 1](./leetcode/729-my-calendar-1.ts)
@@ -27,7 +27,7 @@
   - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
   - [x] [494 target sum](./leetcode/494-target-sum.ts)
   - [x] [547 number of provinces](./leetcode/547-number-of-provinces.ts)
-  - [ ] 1254
+  - [ ] [1254 number of closed islands](./leetcode/1254-number-of-closed-islands.ts)
 - bfs：
   - [x] [1091 shortest path in binary matrix](./leetcode/1091-shortest-path-in-binary-matrix.ts)
   - [x] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ❓
