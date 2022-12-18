@@ -27,7 +27,7 @@
   - [x] [98 validate binary search tree](./leetcode/098-validate-binary-search-tree.ts)
   - [x] [494 target sum](./leetcode/494-target-sum.ts)
   - [x] [547 number of provinces](./leetcode/547-number-of-provinces.ts)
-  - [ ] [1254 number of closed islands](./leetcode/1254-number-of-closed-islands.ts)
+  - [x] [1254 number of closed islands](./leetcode/1254-number-of-closed-islands.ts)
 - bfs：
   - [x] [1091 shortest path in binary matrix](./leetcode/1091-shortest-path-in-binary-matrix.ts)
   - [x] [1129 shortest path with alternating colors](./leetcode/1129-shortest-path-with-alternating-colors.ts) ❓
