@@ -96,7 +96,7 @@ class Heap {
     let cur = 0;
     let left = cur * 2 + 1;
     let right = cur * 2 + 2;
-    const isValid = (i) => i < this.heap.length && i >= 0;
+    const isValid = (i: number): boolean => i < this.heap.length && i >= 0;
 
     let swapLeft = isValid(left) && this.heap[cur] < this.heap[left];
     let swapRight = isValid(right) && this.heap[cur] < this.heap[right];
