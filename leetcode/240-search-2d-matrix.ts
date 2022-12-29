@@ -12,7 +12,7 @@ function searchMatrix(matrix: number[][], target: number): boolean {
     endRow: number,
     startCol: number,
     endCol: number,
-  ) {
+  ): boolean {
     // recursion base case
     if (startRow > endRow || startCol > endCol) return false;
 
