@@ -33,7 +33,7 @@ class EventBus {
     if (!callback) {
       delete this._events[eventName];
     } else {
-      const index = this._events[eventName].findIndex(el => el === callback);
+      const index = this._events[eventName].findIndex((el) => el === callback);
       if (index === -1) {
         return new Error('callback not registered');
       }

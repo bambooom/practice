@@ -73,7 +73,7 @@ const source = Object.create(
       },
       enumerable: true,
     },
-  }
+  },
 );
 
 console.log(objectAssign(source));
@@ -81,7 +81,7 @@ console.log(objectAssign(source));
 function shallowCopy(obj) {
   return Object.create(
     Object.getPrototypeOf(obj),
-    Object.getOwnPropertyDescriptors(obj)
+    Object.getOwnPropertyDescriptors(obj),
   );
 }
 

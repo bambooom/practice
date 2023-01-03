@@ -59,10 +59,10 @@ function convertJSONArrayToTree(arr) {
   }
   const res = [];
   const itemMap = {};
-  arr.forEach(item => {
+  arr.forEach((item) => {
     itemMap[item.id] = item;
   });
-  arr.forEach(item => {
+  arr.forEach((item) => {
     if (item.pid && itemMap[item.pid]) {
       if (!itemMap[item.pid].children) {
         itemMap[item.pid].children = [];
