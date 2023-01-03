@@ -40,3 +40,15 @@ export class Node {
     this.next = next === undefined ? null : next;
   }
 }
+
+/**
+ * node of an n-ary tree
+ */
+export class NNode {
+  val: number;
+  children: NNode[];
+  constructor(val?: number) {
+    this.val = val === undefined ? 0 : val;
+    this.children = [];
+  }
+}
