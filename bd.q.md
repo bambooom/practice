@@ -15,3 +15,15 @@
   - [200 number of islands](./leetcode/200-number-of-islands.ts)
   - [33 search in rotated sorted array](./leetcode/033-search-in-rotated-sorted-array.ts)
   - [236 lowest common ancestor](./leetcode/236-lowest-common-ancestor.ts)
+- 模拟；动态规划
+  - [54 spiral matrix](./leetcode/054-spiral-matrix.ts)
+  - [42 trapping rain water](./leetcode/042-trapping-rain-water.ts)
+  - [5 longest palindromic substring](./leetcode/005-longest-palindromic-substring.ts)
+- 回溯；动态规划
+  - [46 permutation](./leetcode/046-permutation.ts)
+  - [23 merge k sorted list](./leetcode/023-merge-k-sorted-list.ts)
+  - [300 longest increasing subsequence](./leetcode/300-longest-increasing-subsequence.ts)
+- 深度优先搜索；链表；哈希
+  - [199 binary tree right side view](./leetcode/199-binary-tree-right-side-view.ts)
+  - [143 reorder list](./leetcode/143-reorder-list.ts)
+  - [41 first missing positive]
