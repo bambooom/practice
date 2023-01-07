@@ -26,4 +26,4 @@
 - 深度优先搜索；链表；哈希
   - [199 binary tree right side view](./leetcode/199-binary-tree-right-side-view.ts)
   - [143 reorder list](./leetcode/143-reorder-list.ts)
-  - [41 first missing positive]
+  - [41 first missing positive](./leetcode/041-first-missing-positive.ts)
