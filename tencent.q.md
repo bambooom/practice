@@ -1,0 +1,29 @@
+腾讯当季高频面试题 from leetcode.cn
+
+- 链表
+  - [206 reverse linked list](./leetcode/206-reverse-linked-list.ts)
+  - [21 merge 2 sorted list](./leetcode/021-merge-sorted-list.ts)
+- 数组；二分查找
+  - [53 maximum subarray](./leetcode/053-max-subarray.ts)
+  - [704 binary search](./leetcode/704-binary-search.ts)
+  - [40 combination sum 2](./leetcode/040-combination-sum-2.ts)
+- 链表；最小堆
+  - [25 reverse nodes in k group](./leetcode/025-reverse-nodes-in-k-group.ts)
+  - [264 ugly number 2](./leetcode/264-ugly-number-2.ts)
+  - [468 validate IP address](./leetcode/468-validate-ip-addr.ts)
+- 贪心；合并链表
+  - [72 edit distance](./leetcode/072-edit-distance.ts)
+  - [23 merge k sorted list](./leetcode/023-merge-k-sorted-list.ts)
+  - [238 product of array except self](./leetcode/238-product-of-array-except-self.ts)
+- 哈希表；平衡二叉树；动态规划
+  - [146 LRU Cache](./leetcode/146-lru-cache.ts)
+  - [460 LFU Cache](./leetcode/460-lfu-cache.ts)
+  - [213 House robber 2](./leetcode/213-house-robber-2.ts)
+- 哈希表；一次遍历
+  - [442 find all duplicates in array](./leetcode/442-find-all-duplicates-in-array.ts)
+  - [239 sliding window max](./leetcode/239-sliding-window-maximum.ts)
+  - [82 remove duplicates in sorted list 2](./leetcode/082-remove-duplicates-in-sorted-list-2.ts)
+- 回溯；二分查找；动态规划
+  - [494 target sum](./leetcode/494-target-sum.ts)
+  - [1143 longest common subsequence](./leetcode/1143-longest-common-subsequence.ts)
+  - [224 basic calculator](./leetcode/224-basic-calculator.ts)
