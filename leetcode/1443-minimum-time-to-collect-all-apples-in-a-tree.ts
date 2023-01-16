@@ -4,6 +4,8 @@
 // Output: 8
 // Explanation: The figure above represents the given tree where red vertices have an apple. One optimal path to collect all apples is shown by the green arrows.
 
+// https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/solutions/2864715/minimum-time-to-collect-all-apples-in-a-tree/?orderBy=most_votes
+
 function minTime(n: number, edges: number[][], hasApple: boolean[]): number {
   const parentMap = new Map<number, number>();
   let answer = 0;
