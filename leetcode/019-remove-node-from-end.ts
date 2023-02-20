@@ -18,6 +18,9 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
     return head.next;
   }
 
+  // currentNode 提前 n steps，然后移动 nodeBeforeRemoved，两者相差就一直都是 n steps
+  // 让 currentNode 移到到 end，nodeBeforeRemoved 所在的位置就是 Nth from End
+
   // move both pointers until currentNode reaches the end of list
   let nodeBeforeRemoved = head;
   while (currentNode.next !== null) {
