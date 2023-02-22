@@ -39,4 +39,5 @@ function kthSmallest2(root: TreeNode | null, k: number): number {
     }
     node = node.right;
   }
+  return 0;
 }

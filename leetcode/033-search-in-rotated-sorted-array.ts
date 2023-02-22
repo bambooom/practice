@@ -9,7 +9,7 @@
 // ELSE
 //   then target is on the other side
 
-function search(nums: number[], target: number): number {
+function searchRotatedSorterArray(nums: number[], target: number): number {
   let left = 0;
   let right = nums.length - 1;
 

@@ -1,4 +1,8 @@
-function searchMatrix(matrix: number[][], target: number): boolean {
+// https://leetcode.com/problems/search-a-2d-matrix
+// #binary-search
+
+// O(log(m * n)) time
+function search2DMatrix(matrix: number[][], target: number): boolean {
   const rows = matrix.length;
   const cols = matrix[0].length;
   let low = 0, // (0,0)
@@ -6,6 +10,7 @@ function searchMatrix(matrix: number[][], target: number): boolean {
 
   while (low <= high) {
     const mid = Math.floor((low + high) / 2);
+    // 假设把matrix平铺开来进行 binary search， row = idx // n, col = idx % n
     const i = Math.floor(mid / cols);
     const j = mid % cols;
     if (target === matrix[i][j]) {
@@ -27,5 +32,5 @@ const matrix = [
   [23, 30, 34, 60],
 ];
 
-console.log(searchMatrix(matrix, 3)); // true
-console.log(searchMatrix(matrix, 13)); // false
+console.log(search2DMatrix(matrix, 3)); // true
+console.log(search2DMatrix(matrix, 13)); // false
