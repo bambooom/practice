@@ -98,7 +98,7 @@ function numBusesToDestination2(
 
   let q = [source];
   let buses = 1;
-  const visitedBus = new Set();
+  const visitedBus: Set<number> = new Set();
   while (q.length) {
     const accessibleStopsQ = [];
     while (q.length) {
