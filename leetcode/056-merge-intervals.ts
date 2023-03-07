@@ -11,14 +11,16 @@
 // they do overlap, and we merge them by updating the end of the previous interval if it is less than the end of the current interval.
 
 function merge(intervals: number[][]): number[][] {
-  intervals.sort((a, b) => a[0] - b[0]);
+  intervals.sort((a, b) => a[0] - b[0]); // sort by first number in interval
   const merged: number[][] = [];
 
   for (let i = 0; i < intervals.length; i++) {
     const interval = intervals[i];
     if (!merged.length || merged[merged.length - 1][1] < interval[0]) {
+      // if max is smaller then current interval low bound, then push the interval directly
       merged.push(interval);
     } else {
+      // has overlapped, update last merged interval's upper bound
       merged[merged.length - 1][1] = Math.max(
         merged[merged.length - 1][1],
         interval[1],
