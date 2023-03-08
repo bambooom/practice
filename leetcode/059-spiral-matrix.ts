@@ -1,4 +1,10 @@
 // https://leetcode.com/problems/spiral-matrix-ii/
+// Given a positive integer n, generate an n x n matrix filled with elements from 1 to n^2 in spiral order.
+// 1 → 2 → 3
+//         ↓
+// 8 → 9   4
+// ↑       ↓
+// 7 ← 6 ← 5
 
 function generateMatrix(n: number): number[][] {
   const output = new Array(n).fill(0).map(() => new Array(n).fill(0));

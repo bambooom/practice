@@ -4,15 +4,17 @@
 // Do not return anything, modify matrix in-place instead.
 
 // 4-way swap method
-function rotate(matrix: number[][]): void {
+// explanation with charts:
+// https://leetcode.com/problems/rotate-image/solutions/1175496/js-python-java-c-easy-4-way-swap-solution-w-explanation/
+function rotateMatrix(matrix: number[][]): void {
   const n = matrix.length;
-  const depth = ~~(n / 2);
+  const depth = ~~(n / 2); // half
 
   for (let i = 0; i < depth; i++) {
     const len = n - 2 * i - 1,
       opp = n - 1 - i;
     for (let j = 0; j < len; j++) {
-      const tmp = matrix[i][i + j];
+      const tmp = matrix[i][i + j]; // save first one as tmp
       matrix[i][i + j] = matrix[opp - j][i];
       matrix[opp - j][i] = matrix[opp][opp - j];
       matrix[opp][opp - j] = matrix[i + j][opp];
@@ -30,7 +32,7 @@ function rotate(matrix: number[][]): void {
 // Time complexity: O(n^2)
 // Space complexity: O(1)
 
-const rotate2 = function (matrix: number[][]) {
+const rotateMatrix2 = function (matrix: number[][]) {
   const n = matrix.length;
 
   function transpose(matrix: number[][]) {

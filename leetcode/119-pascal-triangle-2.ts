@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/pascals-triangle-ii/
 // https://en.wikipedia.org/wiki/Pascal%27s_rule
+// 组合数学，combination math， C(n,k)
 
 function getRow(rowIndex: number): number[] {
   const res = [];
