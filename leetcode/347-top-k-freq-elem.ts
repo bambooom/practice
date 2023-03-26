@@ -1,7 +1,8 @@
 // https://leetcode.com/problems/top-k-frequent-elements
 // Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+// #hash-table
 
-function topKFrequent(nums: number[], k: number): number[] {
+function topKFrequentElems(nums: number[], k: number): number[] {
   const map = new Map<number, number>();
 
   for (let i = 0; i < nums.length; i++) {

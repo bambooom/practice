@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/sort-characters-by-frequency/
+// #hash-table
 
 function frequencySort(s: string): string {
   const hash = new Map<string, number>();
