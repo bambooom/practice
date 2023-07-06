@@ -1,0 +1,12 @@
+// #Closures
+
+function createCounter1(n: number): () => number {
+  return () => n++;
+}
+
+/**
+ * const counter = createCounter(10)
+ * counter() // 10
+ * counter() // 11
+ * counter() // 12
+ */
