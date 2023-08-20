@@ -2,6 +2,8 @@
 
 function curry1(fn) {
   return function curried(...args) {
+    // If the number of arguments passed (args.length) is greater than or equal to the original function's arity (fn.length),
+    // then all required arguments have been provided.
     if (args.length >= fn.length) {
       return fn.apply(this, args);
     } else {
