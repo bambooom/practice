@@ -28,3 +28,22 @@ function productExceptSelf(nums: number[]): number[] {
 
   return answer;
 }
+
+// not improved solution
+function productExceptSelf2(nums: number[]): number[] {
+  // answer[i] = L[i] * R[i]
+  const L: number[] = [1];
+  const R: number[] = [1];
+  const ans: number[] = [];
+  for (let i = 1; i < nums.length; i++) {
+    L[i] = L[i - 1] * nums[i - 1];
+  }
+  for (let i = nums.length - 2; i >= 0; i--) {
+    R.unshift(R[0] * nums[i + 1]);
+  }
+  for (let i = 0; i < nums.length; i++) {
+    ans[i] = L[i] * R[i];
+  }
+
+  return ans;
+}
