@@ -3,14 +3,18 @@
 // #two-pointer
 
 function isSubsequence(s: string, t: string): boolean {
+  // two pointers for each array
   let i = 0;
   let j = 0;
 
+  // for left index of s, move right index on t to match s[i]
+  // if match, increment i
   while (j < t.length) {
     if (s[i] === t[j]) {
       i++;
     }
     j++;
   }
+  // at last, check i with s length to decide whether all chars in s is matched
   return i === s.length;
 }

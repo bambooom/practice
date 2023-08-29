@@ -8,6 +8,7 @@ function increasingTriplet(nums: number[]): boolean {
   let second = Infinity;
 
   for (const cur of nums) {
+    // if at any point in the loop, we find a number that is greater than our two stored numbers, then we automatically have a valid triplet
     if (cur > first && cur > second) {
       return true;
     }
