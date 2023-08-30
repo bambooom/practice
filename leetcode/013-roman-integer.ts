@@ -46,3 +46,19 @@ export function romanToInt(s: string): number {
   }
   return n;
 }
+
+// https://leetcode.com/problems/roman-to-integer/solutions/2109445/nice-and-clean-ts-js
+// better solution:
+// You don't need to map CM, XC, "IX", "IV" separately. Eg.
+// when you parse "MCMXCIV" to an array of integers you get:
+// [1000, 100, 1000, 10, 100, 1, 5], if you add them together (from left to right),
+// you just need to check if next number is bigger, if so then you simply subtract
+// that number: 1000 - 100 + 1000 - 10 + 100 - 1 + 5 = 1994.
+function romanToInt2(s: string): number {
+  const integers = s.split('').map((c) => SYMBOLS[c as Roman]);
+
+  return integers.reduce(
+    (acc, x, i) => (x < integers[i + 1] ? acc - x : acc + x),
+    0,
+  );
+}
