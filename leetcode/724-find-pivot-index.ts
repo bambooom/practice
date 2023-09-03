@@ -24,3 +24,17 @@ function pivotIndex(nums: number[]): number {
 // console.log(pivotIndex([2, 1, -1])); // 0;
 console.log(pivotIndex([-1, -1, 0, 1, 1, 0])); // 5
 console.log(pivotIndex([0])); // 0
+
+function pivotIndex2(nums: number[]): number {
+  let left = 0;
+  const right = nums.reduce((a, b) => a + b);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (left === right - left - nums[i]) {
+      return i;
+    }
+    left += nums[i];
+  }
+
+  return -1;
+}
