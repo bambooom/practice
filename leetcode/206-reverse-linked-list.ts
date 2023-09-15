@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/reverse-linked-list/
+
 import { ListNode } from './util';
 
 // recursive, 1-2-3-4-5
