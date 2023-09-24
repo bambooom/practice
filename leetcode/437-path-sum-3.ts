@@ -27,8 +27,8 @@ function pathSum(root: TreeNode | null, targetSum: number): number {
   let output = 0;
   const map: Record<number, number> = {};
 
-  const traverse = (root: TreeNode | null, pathSum: number) => {
-    if (!root) return null;
+  const traverse = (root: TreeNode | null, pathSum: number): void => {
+    if (!root) return;
 
     pathSum += root.val; // current path sum
 
@@ -43,7 +43,7 @@ function pathSum(root: TreeNode | null, targetSum: number): number {
       output += map[pathSum - targetSum];
     }
 
-    // memoize current path sum (root to current node) and it's frequency
+    // memorize current path sum (root to current node) and it's frequency
     if (map[pathSum]) {
       map[pathSum]++;
     } else {
