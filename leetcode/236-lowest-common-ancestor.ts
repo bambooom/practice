@@ -16,5 +16,7 @@ function lowestCommonAncestor(
 
   const left = lowestCommonAncestor(root.left, p, q);
   const right = lowestCommonAncestor(root.right, p, q);
+  // left && right => left and right are on different subtree, so root is the LCA
+  // otherwise, they are both on left subtree or right subtree
   return left && right ? root : left || right;
 }
