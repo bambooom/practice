@@ -26,3 +26,14 @@ function validWordSquare2(words: string[]): boolean {
   }
   return true;
 }
+
+// compare different (i,j) directly
+function validWordSquare3(words: string[]): boolean {
+  for (let i = 0; i < words.length; i++) {
+    const wordLen = words[i].length;
+    for (let j = 0; j < wordLen; j++) {
+      if (!words[j] || words[i][j] !== words[j][i]) return false; //jth word doesn't exist in the list OR characters don't match
+    }
+  }
+  return true;
+}
