@@ -1,17 +1,22 @@
 // https://leetcode.com/problems/keys-and-rooms
 // #depth-first search
 
+// There are n rooms labeled from 0 to n - 1 and all the rooms are locked except for room 0. Your goal is to visit all the rooms. However, you cannot enter a locked room without having its key.
+// When you visit a room, you may find a set of distinct keys in it. Each key has a number on it, denoting which room it unlocks, and you can take all of them with you to unlock the other rooms.
+
+// Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i, return true if you can visit all the rooms, or false otherwise.
+
 function canVisitAllRooms(rooms: number[][]): boolean {
   const stack: number[] = [];
   const visited = new Set<number>();
 
-  stack.push(...rooms[0]);
+  stack.push(...rooms[0]); // what keys in room0
   visited.add(0);
   while (stack.length) {
     const r = stack.pop() as number;
-    if (visited.has(r)) continue;
-    visited.add(r);
-    stack.push(...rooms[r]);
+    if (visited.has(r)) continue; // room r has visited, no need to visit again
+    visited.add(r); // add to visited key
+    stack.push(...rooms[r]); // add new keys to stack
   }
   return visited.size == rooms.length;
 }
