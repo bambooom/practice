@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/rotting-oranges/
+// #BFS
 // You are given an m x n grid where each cell can have one of three values:
 
 // 0 representing an empty cell,
@@ -22,6 +23,7 @@ function orangesRotting(grid: number[][]): number {
   const freshArray: string[] = [];
   const rottenArray: string[] = [];
 
+  // separate fresh and rotten to 2 arrays, value is `ij` index
   grid.forEach((row, rowIndex) => {
     row.forEach((val, gridIndex) => {
       if (val === 1) {
@@ -32,6 +34,7 @@ function orangesRotting(grid: number[][]): number {
     });
   });
 
+  // make an (i,j) entry rot, and remove it from fresh array, push it to rotten array
   const rot = (i: string, j: string) => {
     const val = i + j;
     const index = freshArray.indexOf(val);
@@ -48,6 +51,7 @@ function orangesRotting(grid: number[][]): number {
     rottenArray.forEach((rotten) => {
       const i = parseInt(rotten[0]);
       const j = parseInt(rotten[1]);
+      // rot neighbors for each direction
       directions.forEach(({ x, y }) =>
         rot((i + x).toString(10), (j + y).toString(10)),
       );
@@ -57,6 +61,7 @@ function orangesRotting(grid: number[][]): number {
   return freshArray.length > 0 ? -1 : minutes;
 }
 
+// Approach 2 - in-place BFS
 const orangesRotting2 = function (grid: number[][]) {
   // get rows and cols length
   const rows = grid.length,
@@ -130,5 +135,3 @@ const orangesRotting2 = function (grid: number[][]) {
   // if we still have fresh oranges, -1 else return time
   return fresh ? -1 : minute;
 };
-
-// Approach 2 - in-place BFS
