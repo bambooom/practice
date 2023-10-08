@@ -17,24 +17,26 @@
 // - Skip one of the elements and find the maximum dot product without including either nums1[i] or nums2[j] in the product.
 // The function returns the maximum dot product starting from the initial positions i=0 and j=0.
 function maxDotProduct(nums1: number[], nums2: number[]): number {
-    const n = nums1.length, m = nums2.length;
-    let dp = new Array(n + 1).fill(-Infinity).map(() => Array(m + 1).fill(-Infinity));
+  const n = nums1.length,
+    m = nums2.length;
+  const dp = new Array(n + 1)
+    .fill(-Infinity)
+    .map(() => Array(m + 1).fill(-Infinity));
 
-    const iterate = (i: number, j: number): number => {
-        if (i >= n || j >= m) {
-            return -Infinity; // Base case: if we go beyond the array bounds, return negative infinity.
-        }
-
-        if (dp[i][j] !== -Infinity) {
-            return dp[i][j]; // If the result is already computed, return it from the memoization table.
-        }
-
-        return dp[i][j] = Math.max(
-            (nums1[i] * nums2[j]) + Math.max(iterate(i + 1, j + 1), 0), // Include the current elements if both are positive
-            Math.max(iterate(i + 1, j), iterate(i, j + 1)) // Skip one of the elements and find the maximum dot product
-        );
+  const iterate = (i: number, j: number): number => {
+    if (i >= n || j >= m) {
+      return -Infinity; // Base case: if we go beyond the array bounds, return negative infinity.
     }
 
-    return iterate(0, 0); // start the recursion from initial positions
-};
+    if (dp[i][j] !== -Infinity) {
+      return dp[i][j]; // If the result is already computed, return it from the memoization table.
+    }
+
+    return (dp[i][j] = Math.max(
+      nums1[i] * nums2[j] + Math.max(iterate(i + 1, j + 1), 0), // Include the current elements if both are positive
+      Math.max(iterate(i + 1, j), iterate(i, j + 1)), // Skip one of the elements and find the maximum dot product
+    ));
+  };
+
+  return iterate(0, 0); // start the recursion from initial positions
 }
