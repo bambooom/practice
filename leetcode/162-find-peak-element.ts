@@ -13,13 +13,15 @@ function findPeakElement(nums: number[]): number {
   let high = nums.length - 1;
 
   while (low < high) {
-    //for every array there should be atleast one peak exists
-
+    //for every array there should be at least one peak exists
+    //so binary search to find
     const mid = Math.floor((low + high) / 2);
-
+    // if the mid element is not greater than the next element
+    // move low to the right
     if (nums[mid] < nums[mid + 1]) {
       low = mid + 1;
     } else if (nums[mid] > nums[mid + 1]) {
+      // else move high to the mid
       high = mid;
     }
   }
