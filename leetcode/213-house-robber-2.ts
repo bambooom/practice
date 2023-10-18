@@ -2,7 +2,7 @@
 // All houses at this place are arranged in a circle.
 // #dynamic-programming
 
-function rob(nums: number[]): number {
+function rob2(nums: number[]): number {
   if (nums.length === 1) return nums[0];
   if (nums.length === 2) return Math.max(...nums);
   if (nums.length === 0) return 0;
@@ -27,7 +27,7 @@ function rob(nums: number[]): number {
 }
 
 // DP solution
-function rob2(nums: number[]): number {
+function robTwo(nums: number[]): number {
   if (nums.length <= 3) {
     return Math.max(...nums);
   }
