@@ -26,3 +26,26 @@ function numTilings(n: number): number {
   }
   return current;
 }
+
+// https://leetcode.com/problems/domino-and-tromino-tiling/solutions/3872381/typescript-dp/?envType=study-plan-v2&envId=leetcode-75
+// Intuition:
+// first, use test to get the below result
+// n | result
+// 0 = 1
+// 1 = 1
+// 2 = 2
+// 3 = 5
+// 4 = 11
+// 5 = 24
+// 6 = 53
+// 7 = 117
+// 8 = 258
+// So: dp[i] = 2*dp[i-1] + dp[i-3]
+function numTilings2(n: number): number {
+  const mod = 10 ** 9 + 7;
+  const dp: number[] = [1, 1, 2];
+  for (let i = 3; i <= n; i++) {
+    dp[i] = (2 * dp[i - 1] + dp[i - 3]) % mod;
+  }
+  return dp[n];
+}
