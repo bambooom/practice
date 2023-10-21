@@ -1,5 +1,8 @@
 // https://leetcode.com/problems/longest-common-subsequence/
 // Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+// A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+// For example, "ace" is a subsequence of "abcde".
+// A common subsequence of two strings is a subsequence that is common to both strings.
 // #dynamic-programming
 
 function longestCommonSubsequence(text1: string, text2: string): number {
@@ -37,6 +40,8 @@ function longestCommonSubsequence2(text1: string, text2: string): number {
 
   const [w, h] = [text1.length, text2.length];
 
+  // generate w x h grids
+  // [[0,0,0,...(w)], [0,0,0,...(w)], ...](h)
   const dp = Array(h)
     .fill(0)
     .map(() => new Array(w).fill(0));
