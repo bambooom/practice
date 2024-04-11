@@ -4,6 +4,8 @@
 // When 2, 3, 4, 5, and 7 are rotated 180 degrees, they become invalid.
 // Given an integer n, return true if it is a confusing number, or false otherwise.
 
+// 比较直接的方法，拆成 digits，包含 2, 3, 4, 5, 6, 7 的肯定不是 confusing number
+// 然后再 reverse 数字，得到的和原来的数字对比即可
 function confusingNumber(n: number): boolean {
   const map: { [key: number]: number } = {
     0: 0,
