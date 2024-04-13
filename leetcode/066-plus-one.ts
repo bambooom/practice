@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/plus-one/
 /**
  * Q: given a large integer represented as an integer array digits
  *  Example:
@@ -33,3 +34,10 @@ export function plusOne(digits: number[]): number[] {
 
 // console.log(plusOne([1, 2, 3])); // [1,2,4]
 // console.log(plusOne([9])); // [1,0]
+// 19
+// 99
+// 91
+// 919
+// 999
+// 199
+// 123
