@@ -15,7 +15,7 @@ type AsyncFunc = (
 function race(funcs) {
   return function (cb) {
     let finished = false;
-    funcs.forEach(func => {
+    funcs.forEach((func) => {
       func((e, v) => {
         if (finished) return;
         cb(e, v);

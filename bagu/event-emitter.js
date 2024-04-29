@@ -9,7 +9,7 @@ class EventEmitter {
       this.subscription.set(eventName, new Set());
     }
     const curSubscription = this.subscription.get(eventName); // set
-    const cbObj = {callback};
+    const cbObj = { callback };
     curSubscription.add(cbObj);
     return {
       release: () => {
@@ -24,7 +24,7 @@ class EventEmitter {
   emit(eventName, ...args) {
     const subscriptions = this.subscription.get(eventName);
     if (subscriptions) {
-      subscriptions.forEach(cbObj => {
+      subscriptions.forEach((cbObj) => {
         cbObj.callback.apply(this, args);
       });
     }
