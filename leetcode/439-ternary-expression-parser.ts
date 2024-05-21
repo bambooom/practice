@@ -24,25 +24,25 @@
 // "(T ? (T ? F : 5) : 3)" --> "(T ? F : 5)" --> "F"
 
 function parseTernary(expression: string): string {
-    const stack: string[] = []
-    for (let i = expression.length - 1; i >= 0; i--) {
-        if (expression[i] === ':') continue;
-        if (expression[i] !== '?') {
-            stack.push(expression[i])
-            continue;
-        }
-        i--; // move ahead in the iteration
-        const first = stack.pop()
-        const second = stack.pop()
-        if (expression[i] === 'T') {
-            stack.push(first!)
-        } else {
-            stack.push(second!)
-        }
+  const stack: string[] = [];
+  for (let i = expression.length - 1; i >= 0; i--) {
+    if (expression[i] === ':') continue;
+    if (expression[i] !== '?') {
+      stack.push(expression[i]);
+      continue;
     }
+    i--; // move ahead in the iteration
+    const first = stack.pop();
+    const second = stack.pop();
+    if (expression[i] === 'T') {
+      stack.push(first!);
+    } else {
+      stack.push(second!);
+    }
+  }
 
-    return stack.pop()!
-};
+  return stack.pop()!;
+}
 
 // https://leetcode.com/problems/ternary-expression-parser/solutions/3799672/javascript-stack/?envType=study-plan-v2&envId=premium-algo-100
 function parseTernary2(expression: string): string {
@@ -74,8 +74,11 @@ function parseTernary2(expression: string): string {
 // hack, using Regex
 // https://leetcode.com/problems/ternary-expression-parser/solutions/3801334/simple-solution-4-lines-using-regular-expressions/?envType=study-plan-v2&envId=premium-algo-100
 function parseTernary3(expression: string): string {
-  while(expression.length > 1) {
-    expression = expression.replace(/([TF])\?([TF0-9]):([TF0-9])(?!\?)/, (_, a, t, f) => a === 'T' ? t : f);
+  while (expression.length > 1) {
+    expression = expression.replace(
+      /([TF])\?([TF0-9]):([TF0-9])(?!\?)/,
+      (_, a, t, f) => (a === 'T' ? t : f),
+    );
   }
 
   return expression;

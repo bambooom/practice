@@ -7,23 +7,29 @@
 // Input: intervals = [[0,2],[3,4],[5,7]], toBeRemoved = [1,6]
 // Output: [[0,1],[6,7]]
 
-function removeInterval(intervals: number[][], toBeRemoved: number[]): number[][] {
-    let res: number[][] = []
-    const [s, e] = toBeRemoved;
+function removeInterval(
+  intervals: number[][],
+  toBeRemoved: number[],
+): number[][] {
+  const res: number[][] = [];
+  const [s, e] = toBeRemoved;
 
-    for (const [a, b] of intervals) {
-        if (b <= s || a >= e) { // 没有交集
-            res.push([a, b])
-            continue
-        }
-        if (a >= s && b <= e) continue // 包含在被删除的区间内
-        if (a < s && b > s) { // a < s < b, s到b是要被删除的区间
-            res.push([a, s])
-        }
-        if (a < e && b > e) { // a < e < b, a到e是要被删除的区间
-            res.push([e, b])
-        }
+  for (const [a, b] of intervals) {
+    if (b <= s || a >= e) {
+      // 没有交集
+      res.push([a, b]);
+      continue;
     }
+    if (a >= s && b <= e) continue; // 包含在被删除的区间内
+    if (a < s && b > s) {
+      // a < s < b, s到b是要被删除的区间
+      res.push([a, s]);
+    }
+    if (a < e && b > e) {
+      // a < e < b, a到e是要被删除的区间
+      res.push([e, b]);
+    }
+  }
 
-    return res
-};
+  return res;
+}

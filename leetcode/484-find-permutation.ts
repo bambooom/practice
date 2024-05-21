@@ -17,55 +17,55 @@
 // https://leetcode.com/problems/find-permutation/solutions/2035298/javascript-two-solutions-w-comments/?envType=study-plan-v2&envId=premium-algo-100
 // 1. stack
 function findPermutation(s: string): number[] {
-  const result: number[] = []
-  const stack: number[] = []
+  const result: number[] = [];
+  const stack: number[] = [];
 
   for (let i = 1; i < s.length + 1; i++) {
     // push the curr num to stack
-    stack.push(i)
+    stack.push(i);
     // if curr char is I, pop the number from stack and add it to result
     if (s[i - 1] === 'I') {
       while (stack.length) {
-        result.push(stack.pop()!)
+        result.push(stack.pop()!);
       }
     }
   }
 
   // push the last num to stack since the loop will only goes to s.length
-  stack.push(s.length + 1)
+  stack.push(s.length + 1);
   // add the remaining nums to result
   while (stack.length) {
-    result.push(stack.pop()!)
+    result.push(stack.pop()!);
   }
-  return result
-};
+  return result;
+}
 
 // 2.reverse
 function findPermutation2(s: string): number[] {
-  let res = []
+  const res = [];
   // generate the list of number with increasing order
-  for (let i = 0; i < s.length + 1; i++){
-    res[i] = i + 1
+  for (let i = 0; i < s.length + 1; i++) {
+    res[i] = i + 1;
   }
 
-  let i = 1
-  while (i < s.length + 1){
+  let i = 1;
+  while (i < s.length + 1) {
     // find the interval that needed to be reverse aka while it is D
-    let j = i
-    while (i < s.length + 1 && s[i-1] === "D"){
-        i ++
+    const j = i;
+    while (i < s.length + 1 && s[i - 1] === 'D') {
+      i++;
     }
     // reverse the d interval
-    reverseOrder(res, j- 1, i)
-    i++
+    reverseOrder(res, j - 1, i);
+    i++;
   }
-  return res
-};
+  return res;
+}
 
-function reverseOrder(target: number[], start: number, end: number){
-  for (let i = 0; i < (end - start) / 2; i++){
-    const temp = target[i + start]
-    target[i + start] = target[end - i - 1]
-    target[end - i - 1] = temp
+function reverseOrder(target: number[], start: number, end: number) {
+  for (let i = 0; i < (end - start) / 2; i++) {
+    const temp = target[i + start];
+    target[i + start] = target[end - i - 1];
+    target[end - i - 1] = temp;
   }
 }
