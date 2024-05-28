@@ -52,3 +52,13 @@ export class NNode {
     this.children = [];
   }
 }
+
+// Not really implement it, just for test
+export class ImmutableListNode {
+  printValue() {
+    console.log('log the value');
+  }
+  getNext(): ImmutableListNode {
+    return new ImmutableListNode();
+  }
+}
