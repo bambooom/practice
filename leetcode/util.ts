@@ -47,9 +47,9 @@ export class Node {
 export class NNode {
   val: number;
   children: NNode[];
-  constructor(val?: number) {
+  constructor(val?: number, children?: NNode[]) {
     this.val = val === undefined ? 0 : val;
-    this.children = [];
+    this.children = children === undefined ? [] : children;
   }
 }
 
