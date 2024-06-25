@@ -48,4 +48,63 @@ function minKnightMoves(x: number, y: number): number {
     steps++;
     q.splice(0, N);
   } while (q.length > 0);
+
+  return steps;
+}
+
+// optimized bfs
+function minKnightMoves2(x: number, y: number): number {
+  const MOVES = [
+    [
+      [-2, -1],
+      [-2, 1],
+      [-1, -2],
+      [1, -2],
+    ], // Down + Left
+    [
+      [-2, -1],
+      [-2, 1],
+      [-1, 2],
+      [1, 2],
+    ], // Down + Right
+    [
+      [2, -1],
+      [2, 1],
+      [-1, -2],
+      [1, -2],
+    ], // Up + Left
+    [
+      [2, -1],
+      [2, 1],
+      [-1, 2],
+      [1, 2],
+    ], // Up + Right
+  ];
+
+  const MIN = -300; // Inclusive
+  const MAX = 300; // Inclusive
+
+  const q: number[][] = [[0, 0]];
+  const seen = new Set<number>();
+  const RANGE = MAX - MIN;
+
+  const steps = 0;
+  do {
+    const N = q.length;
+    for (let i = 0; i < N; ++i) {
+      const [r, c] = q[i];
+      if (r === y && c === x) {
+        return steps;
+      }
+      for (const [dr, dc] of MOVES[+(r <= y) * 2 + +(c <= x)]) {
+        const key = (r + dr - MIN) * RANGE + c + dc - MIN;
+        if (!seen.has(key)) {
+          seen.add(key);
+          q.push([r + dr, c + dc]);
+        }
+      }
+    }
+  } while (q.length > 0);
+
+  return steps;
 }
