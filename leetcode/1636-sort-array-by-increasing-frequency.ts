@@ -19,7 +19,7 @@
 // Output: [5,-1,4,4,-6,-6,1,1,1]
 
 // my solution, not memory efficient
-function frequencySort(nums: number[]): number[] {
+function frequencySortArray(nums: number[]): number[] {
   const freq: Record<number, number> = {};
   for (const v of nums) {
     freq[v] = (freq[v] || 0) + 1;
