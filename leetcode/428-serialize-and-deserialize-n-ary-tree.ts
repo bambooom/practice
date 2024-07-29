@@ -15,15 +15,17 @@
 /**
  * Definition for _Node.
  */
-class _Node {
-  val: number;
-  children: _Node[];
+// class _Node {
+//   val: number;
+//   children: _Node[];
 
-  constructor(v: number, c: _Node[] = []) {
-    this.val = v;
-    this.children = c;
-  }
-}
+//   constructor(v: number, c: _Node[] = []) {
+//     this.val = v;
+//     this.children = c;
+//   }
+// }
+
+import { _Node } from './util';
 
 // https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/solutions/516839/javascript-solution/?envType=study-plan-v2&envId=premium-algo-100
 class Codec1 {

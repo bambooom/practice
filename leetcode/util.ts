@@ -62,3 +62,16 @@ export class ImmutableListNode {
     return new ImmutableListNode();
   }
 }
+
+/**
+ * Definition for _Node.
+ */
+export class _Node {
+  val: number;
+  children: _Node[];
+
+  constructor(v: number, c: _Node[] = []) {
+    this.val = v;
+    this.children = c;
+  }
+}
