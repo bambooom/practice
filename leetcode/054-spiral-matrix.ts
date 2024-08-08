@@ -93,3 +93,20 @@ function spiralOrder2(matrix: number[][]): number[] {
     return lastPosition;
   }
 }
+
+// https://leetcode.com/problems/spiral-matrix/solutions/4665318/short-and-elegant-solution-js-ts/?envType=study-plan-v2&envId=programming-skills
+// short and elegant solution
+
+function spiralOrder3(matrix: number[][]): number[] {
+  const elementsOrder: number[] = [];
+  while (matrix.length > 0 && matrix[0][0] !== undefined) {
+    // steal the first row
+    elementsOrder.push(...matrix.shift()!);
+    // steal the right items
+    matrix.forEach((row) => elementsOrder.push(row.pop()!));
+    // turn the matrix over
+    matrix.reverse().map((row) => row.reverse());
+  }
+
+  return elementsOrder;
+}
