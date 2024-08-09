@@ -70,3 +70,55 @@ function setZeroes(matrix: number[][]): void {
     }
   }
 }
+
+// https://leetcode.com/problems/set-matrix-zeroes/solutions/4245680/detailed-solution-in-python3-go-typescript-with-o-mn-time-and-o-1-space-complexity/?envType=study-plan-v2&envId=programming-skills
+function setZeroes2(matrix: number[][]): void {
+  // Get the dimensions of the matrix
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  // set a flag thatg would indicate if the first row needs to be zero or not
+  let rowZero = false;
+
+  // determine which rows and cols need to be zeroes
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      if (matrix[row][col] === 0) {
+        // place marker on first row for the colomn
+        matrix[0][col] = 0;
+
+        // place marker on first column for the row, if it is not the first row in which case
+        // we mark using the flag we set up already
+        if (row > 0) {
+          matrix[row][0] = 0;
+        } else {
+          rowZero = true;
+        }
+      }
+    }
+  }
+
+  // convert all rows except first row and all columns except first column to zeroes
+  // if they are marked as zero in first row and first column
+  for (let row = 1; row < rows; row++) {
+    for (let col = 1; col < cols; col++) {
+      if (matrix[row][0] === 0 || matrix[0][col] === 0) {
+        matrix[row][col] = 0;
+      }
+    }
+  }
+
+  // handle the first column as the prev loop skipped it
+  if (matrix[0][0] === 0) {
+    for (let row = 0; row < rows; row++) {
+      matrix[row][0] = 0;
+    }
+  }
+
+  // handle the first row as the prev loop skipped it
+  if (rowZero) {
+    for (let col = 0; col < cols; col++) {
+      matrix[0][col] = 0;
+    }
+  }
+}
