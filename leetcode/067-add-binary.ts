@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/add-binary/
 // Q: add 2 binary string, and return binary string
 // Input: a = "11", b = "1"
 // Output: '100'
@@ -30,3 +31,29 @@ str.toString(2) converts the str string to Binary (base 2).
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
  */
+
+// https://leetcode.com/problems/add-binary/solutions/1890638/100-fastest-typescript-solution/?envType=study-plan-v2&envId=programming-skills
+function addBinary2(a: string, b: string): string {
+  let result = '';
+  let carry = 0;
+  const length = Math.max(a.length, b.length);
+  let i = 1;
+  const its = [];
+
+  while (i <= length) {
+    const x = Number(a[a.length - i] || 0);
+    const y = Number(b[b.length - i] || 0);
+    const sum = x + y + carry;
+
+    carry = sum > 1 ? 1 : 0;
+    result = (sum % 2) + result;
+
+    its.push({ i, x, y, carry, sum, result });
+    i++;
+  }
+
+  if (carry) {
+    result = carry.toString(2) + result;
+  }
+  return result;
+}
