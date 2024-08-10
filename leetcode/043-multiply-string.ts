@@ -23,7 +23,7 @@ Time: O(M*N)
 Space: O(M+N)
  */
 
-function multiply(num1: string, num2: string): string {
+function multiplyString(num1: string, num2: string): string {
   if (num1 === '0' || num2 === '0') return '0';
   const firstNumber = [...num1];
   const secondNumber = [...num2];
