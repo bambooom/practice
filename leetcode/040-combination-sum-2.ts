@@ -17,13 +17,18 @@ function combinationSum2(candidates: number[], target: number): number[][] {
   candidates.sort((a, b) => a - b);
 
   function helper(curSum: number, cur: number[], index: number) {
-    if (curSum == target) {
+    if (curSum === target) {
       res.push([...cur]);
       return;
     }
     for (let i = index; i < candidates.length; i++) {
-      if (i != index && candidates[i] == candidates[i - 1]) continue; //already return, go next loop(not recursion)
+      // skip same candidate number
+      if (i !== index && candidates[i] == candidates[i - 1]) {
+        continue; //already return, go next loop(not recursion)
+      }
+      // if sum is larger than target, target sum not possible, return
       if (curSum > target) return;
+
       cur.push(candidates[i]);
       helper(curSum + candidates[i], cur, i + 1);
       cur.pop();
@@ -99,3 +104,37 @@ const combinationSum22 = function (
 
   return paths;
 };
+
+// https://leetcode.com/problems/combination-sum-ii/solutions/2922413/easy-to-understand-solution-beats-80-typescript/?envType=daily-question&envId=2024-08-13
+function combinationSum23(candidates: number[], target: number): number[][] {
+  candidates.sort((a, b) => a - b);
+
+  const result: number[][] = [];
+
+  const dfs = (cur: number[], idx: number, sum: number) => {
+    if (sum === target) {
+      result.push([...cur]);
+      return;
+    }
+
+    if (idx >= candidates.length || sum > target) {
+      return;
+    }
+
+    cur.push(candidates[idx]);
+    dfs(cur, idx + 1, sum + candidates[idx]);
+    cur.pop();
+
+    while (
+      idx + 1 < candidates.length &&
+      candidates[idx] === candidates[idx + 1]
+    ) {
+      idx++;
+    }
+    dfs(cur, idx + 1, sum);
+  };
+
+  dfs([], 0, 0);
+
+  return result;
+}
