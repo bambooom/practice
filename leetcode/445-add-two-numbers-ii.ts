@@ -62,3 +62,52 @@ function addTwoNumbers(
 
   return l3.val === 0 ? l3.next : l3;
 }
+
+// https://leetcode.com/problems/add-two-numbers-ii/solutions/5145038/simple-to-understand-solution-with-explanation-beats-95-by-runtime/?envType=study-plan-v2&envId=programming-skills
+function addTwoNumbers2(
+  l1: ListNode | null,
+  l2: ListNode | null,
+): ListNode | null {
+  let reversedL1: ListNode | null | undefined = null;
+  let reversedL2: ListNode | null | undefined = null;
+
+  while (l1) {
+    reversedL1 = new ListNode(l1.val, reversedL1);
+    l1 = l1.next;
+  }
+
+  while (l2) {
+    reversedL2 = new ListNode(l2.val, reversedL2);
+    l2 = l2.next;
+  }
+
+  let head = null;
+  let isOverflow = 0;
+
+  while (reversedL1 || reversedL2) {
+    const currentRes =
+      (reversedL1?.val || 0) + (reversedL2?.val || 0) + isOverflow;
+
+    if (currentRes > 9) {
+      const node: ListNode = new ListNode(currentRes % 10, head);
+      head = node;
+
+      isOverflow = 1;
+    } else {
+      const node: ListNode = new ListNode(currentRes, head);
+      head = node;
+
+      isOverflow = 0;
+    }
+
+    if (!reversedL1?.next && !reversedL2?.next && isOverflow) {
+      const node = new ListNode(1, head);
+      head = node;
+    }
+
+    reversedL1 = reversedL1?.next;
+    reversedL2 = reversedL2?.next;
+  }
+
+  return head;
+}
