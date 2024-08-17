@@ -34,4 +34,27 @@ function combinationSum(candidates: number[], target: number): number[][] {
   return result;
 }
 
-// https://leetcode.com/problems/combination-sum/solutions/1378325/javascript-solution-with-detailed-explanation/
+// https://leetcode.com/problems/combination-sum/solutions/875295/javascript-typescript-dfs-solution-w-detailed-comments/?envType=study-plan-v2&envId=top-100-liked
+function combinationSumS2(candidates: number[], target: number): number[][] {
+  const result: number[][] = [];
+
+  const dfs = (path: number[], sum: number, last: number): void => {
+    if (sum === target) {
+      result.push(path);
+      return;
+    }
+
+    for (let i = last; i < candidates.length; i++) {
+      if (sum + candidates[i] <= target) {
+        dfs([...path, candidates[i]], sum + candidates[i], i);
+      }
+    }
+  };
+
+  // sort candidates ascending. the reason why we do this is because, in our dfs,
+  // when we're going through candidates, and a number is too big for target (exceeds)
+  // we don't want to continue to the next number, it will only be bigger
+  candidates.sort((a, b) => a - b);
+  dfs([], 0, 0);
+  return result;
+}

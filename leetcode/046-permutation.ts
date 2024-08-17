@@ -31,3 +31,26 @@ function permute(nums: number[]): number[][] {
 
   return result;
 }
+
+// backtracking
+function permute2(nums: number[]): number[][] {
+  const result: number[][] = [];
+
+  const dfs = (path: number[]) => {
+    if (path.length === nums.length) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      if (!path.includes(nums[i])) {
+        path.push(nums[i]);
+        dfs(path);
+        path.pop();
+      }
+    }
+  };
+
+  dfs([]);
+  return result;
+}
