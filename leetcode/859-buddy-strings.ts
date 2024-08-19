@@ -10,7 +10,7 @@ function buddyStrings(s: string, goal: string): boolean {
 
   if (s === goal) {
     const set = new Set(s);
-    return set.size < s.length;
+    return set.size < s.length; // has same characters
   }
 
   const diff: number[] = [];
@@ -21,6 +21,7 @@ function buddyStrings(s: string, goal: string): boolean {
     }
   }
 
+  // have 2 different charasters and differs with same chars
   return (
     diff.length === 2 &&
     s[diff[0]] === goal[diff[1]] &&
