@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/search-insert-position
 // Q: sorted array, find the index of target or where to insert
 // using binary-search to reach O(n*logn)
 
