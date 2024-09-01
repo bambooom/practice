@@ -16,22 +16,21 @@ function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
     hash[inorder[i]] = i;
   }
 
-  return helper(preorder, 0, inorder.length - 1, hash);
-}
+  const helper = (
+    preorder: number[],
+    start: number,
+    end: number,
+    hash: { [key: number]: number },
+  ): TreeNode | null => {
+    if (start > end) return null;
+    const pop = preorder.shift()!;
+    const root = new TreeNode(pop);
+    root.left = helper(preorder, start, hash[pop] - 1, hash);
+    root.right = helper(preorder, hash[pop] + 1, end, hash);
+    return root;
+  };
 
-function helper(
-  preorder: number[],
-  start: number,
-  end: number,
-  hash: { [key: number]: number },
-): TreeNode | null {
-  if (start > end) return null;
-  const pop = preorder[0];
-  preorder.shift();
-  const root = new TreeNode(pop);
-  root.left = helper(preorder, start, hash[pop] - 1, hash);
-  root.right = helper(preorder, hash[pop] + 1, end, hash);
-  return root;
+  return helper(preorder, 0, inorder.length - 1, hash);
 }
 
 /**
