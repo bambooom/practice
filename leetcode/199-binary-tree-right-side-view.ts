@@ -5,15 +5,17 @@ import { TreeNode } from './util';
 function rightSideView(root: TreeNode | null): number[] {
   if (!root) return [];
   const res: number[] = [];
-  right(root, 0);
-  return res;
 
-  function right(node: TreeNode | null, level: number): void {
+  const helper = (node: TreeNode | null, level: number): void => {
     if (!node) return;
-    res[level] = node.val;
-    right(node.left, level + 1);
-    right(node.right, level + 1);
-  }
+    if (level === res.length) res.push(node.val);
+    helper(node.left, level + 1);
+    helper(node.right, level + 1);
+    // first left, and then right, so that we can override when there is a right when we see from right side
+  };
+
+  helper(root, 0);
+  return res;
 }
 
 // BFS solution using queue
