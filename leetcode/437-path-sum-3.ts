@@ -61,3 +61,38 @@ function pathSum(root: TreeNode | null, targetSum: number): number {
   traverse(root, 0);
   return output;
 }
+
+// https://leetcode.com/problems/path-sum-iii/solutions/2205014/iterative-post-order-prefix-sum-with-explanation-and-pictures-spent-2-days-to-learn-post-order/?envType=study-plan-v2&envId=top-100-liked
+// stack, seems faster
+function pathSum2(root: TreeNode | null, targetSum: number): number {
+  let curr = root;
+
+  const stack: TreeNode[] = [];
+
+  let curSum = 0;
+  const map: Map<number, number> = new Map();
+  map.set(0, 1);
+
+  let count = 0;
+  while (stack.length || curr) {
+    while (curr) {
+      stack.push(curr);
+      curSum += curr.val;
+      count += map.get(curSum - targetSum) ?? 0;
+      map.set(curSum, (map.get(curSum) || 0) + 1);
+
+      curr = curr.left || curr.right || null;
+    }
+
+    const pop = stack.pop();
+
+    map.set(curSum, map.get(curSum)! - 1);
+    curSum -= pop!.val;
+
+    if (stack.length && stack[stack.length - 1].left === pop) {
+      curr = stack[stack.length - 1].right;
+    }
+  }
+
+  return count;
+}
