@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/climbing-stairs
 /**
  * Q: You are climbing a staircase. It takes n steps to reach the top.
  * Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -6,11 +7,11 @@
  * Step(n) = Step(n - 1) + Step(n - 2), it's actually fibonacci
  */
 
-function fn1(n: number): number {
-  if (n === 1) return 1;
-  if (n === 2) return 2;
-  return fn1(n - 2) + fn1(n - 1);
-}
+// function fn1(n: number): number {
+//   if (n === 1) return 1;
+//   if (n === 2) return 2;
+//   return fn1(n - 2) + fn1(n - 1);
+// }
 
 function climbStairs(n: number): number {
   if (n == 1) return 1;
@@ -23,4 +24,18 @@ function climbStairs(n: number): number {
     two += temp;
   }
   return two;
+}
+
+// seems faster
+function climbStairs2(n: number): number {
+  if (n <= 1) return 1;
+  let firstNum = 1,
+    secondNum = 1,
+    thirdNum = 0;
+  for (let i = 2; i <= n; i++) {
+    thirdNum = firstNum + secondNum;
+    firstNum = secondNum;
+    secondNum = thirdNum;
+  }
+  return thirdNum;
 }
