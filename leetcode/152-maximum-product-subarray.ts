@@ -69,3 +69,24 @@ function maxProduct3(nums: number[]): number {
   }
   return res;
 }
+
+// https://leetcode.com/problems/maximum-product-subarray/solutions/3026144/javascript-solution/?envType=study-plan-v2&envId=top-100-liked
+// two pass
+function maxProduct4(nums: number[]): number {
+  let max = Number.MIN_SAFE_INTEGER;
+  const N = nums.length;
+
+  for (let i = 0, product = 1; i < N; i++) {
+    product *= nums[i];
+    max = Math.max(max, product);
+    if (product === 0) product = 1;
+  }
+
+  for (let i = N - 1, product = 1; i >= 0; i--) {
+    product *= nums[i];
+    max = Math.max(max, product);
+    if (product === 0) product = 1;
+  }
+
+  return max;
+}
