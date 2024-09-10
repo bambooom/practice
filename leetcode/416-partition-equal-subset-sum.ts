@@ -24,3 +24,32 @@ function canPartition(nums: number[]): boolean {
 
   return dp[half] || false;
 }
+
+// https://leetcode.com/problems/partition-equal-subset-sum/solutions/2683349/typescript-javascript-dp-solution/?envType=study-plan-v2&envId=top-100-liked
+// seems faster
+function canPartition2(nums: number[]): boolean {
+  const sum = nums.reduce((a, b) => a + b);
+  if (sum % 2 !== 0) {
+    return false;
+  }
+
+  const half = sum / 2;
+  const dp = new Array(nums.length).fill(false);
+  dp[0] = true;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    const num = nums[i];
+
+    for (let j = half; j >= 0; j--) {
+      if (dp[j] === true && j + num <= half) {
+        dp[j + num] = true;
+      }
+    }
+
+    if (dp[half]) {
+      return true;
+    }
+  }
+
+  return false;
+}
