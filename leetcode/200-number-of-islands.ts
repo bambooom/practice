@@ -38,3 +38,44 @@ function numIslands(grid: string[][]): number {
 
   return count;
 }
+
+// https://leetcode.com/problems/number-of-islands/solutions/3106855/typescript-solution-using-a-queue/?envType=study-plan-v2&envId=top-100-liked
+// queue
+
+function numIslands2(grid: string[][]): number {
+  const h = grid.length;
+  const w = grid[0].length;
+
+  let islands = 0;
+  const queue: [number, number][] = [];
+
+  for (let i = 0; i < h; i++) {
+    for (let j = 0; j < w; j++) {
+      const exploring = grid[i][j];
+
+      if (exploring === '1') {
+        islands++;
+        queue.unshift([i, j]);
+
+        while (queue.length) {
+          const [x, y] = queue.pop()!;
+
+          if (y < 0 || x < 0 || x >= h || y >= w) {
+            continue;
+          }
+
+          if (grid[x][y] === '1') {
+            grid[x][y] = '0';
+
+            queue.unshift([x - 1, y]);
+            queue.unshift([x, y + 1]);
+            queue.unshift([x + 1, y]);
+            queue.unshift([x, y - 1]);
+          }
+        }
+      }
+    }
+  }
+
+  return islands;
+}
