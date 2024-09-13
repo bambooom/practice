@@ -47,3 +47,10 @@ function xorQueries(arr: number[], queries: number[][]): number[] {
 
   return ans;
 }
+
+// compact
+function xorQueries2(arr: number[], queries: number[][]): number[] {
+  let runningXor = 0;
+  const prefixXor = arr.map((val) => (runningXor ^= val));
+  return queries.map(([l, r]) => prefixXor[r] ^ (prefixXor[l - 1] ?? 0));
+}
