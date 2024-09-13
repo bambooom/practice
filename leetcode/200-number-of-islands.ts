@@ -42,7 +42,7 @@ function numIslands(grid: string[][]): number {
 // https://leetcode.com/problems/number-of-islands/solutions/3106855/typescript-solution-using-a-queue/?envType=study-plan-v2&envId=top-100-liked
 // queue
 
-function numIslands2(grid: string[][]): number {
+function numIslandsTwo(grid: string[][]): number {
   const h = grid.length;
   const w = grid[0].length;
 
