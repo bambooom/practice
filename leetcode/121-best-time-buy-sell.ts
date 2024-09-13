@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock
 /**
  * given an array prices where prices[i] is the price of a given stock on the ith day.
  * You want to maximize your profit by choosing a single day to buy one stock and
@@ -36,4 +37,16 @@ export function maxProfit2(prices: number[]): number {
   }
 
   return maxProfit;
+}
+
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solutions/2572962/typescript-solution/?envType=study-plan-v2&envId=top-100-liked
+export function maxProfit3(prices: number[]): number {
+  let min = prices[0];
+  let max = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    min = Math.min(min, prices[i]);
+    max = Math.max(max, prices[i] - min);
+  }
+  return max;
 }
