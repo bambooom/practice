@@ -31,3 +31,19 @@ function hasCycle2(head: ListNode | null): boolean {
   }
   return true;
 }
+
+// https://leetcode.com/problems/linked-list-cycle/solutions/4833039/ts-easy-to-understand-two-pointers-approach/?envType=study-plan-v2&envId=top-100-liked
+function hasCycle3(head: ListNode | null): boolean {
+  let slow: ListNode | null = head;
+  let fast: ListNode | null = head;
+
+  while (fast && fast.next) {
+    slow = slow!.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      return true;
+    }
+  }
+
+  return false;
+}
