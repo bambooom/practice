@@ -1,4 +1,11 @@
 // https://leetcode.com/problems/my-calendar-i/
+// You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a double booking.
+// A double booking happens when two events have some non-empty intersection (i.e., some moment is common to both events.).
+// The event can be represented as a pair of integers start and end that represents a booking on the half-open interval [start, end), the range of real numbers x such that start <= x < end.
+
+// Implement the MyCalendar class:
+// MyCalendar() Initializes the calendar object.
+// boolean book(int start, int end) Returns true if the event can be added to the calendar successfully without causing a double booking. Otherwise, return false and do not add the event to the calendar.
 
 class MyCalendar {
   private booked: number[][];
@@ -76,5 +83,67 @@ class MyCalendar2 {
     this.booked.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 
     return true;
+  }
+}
+
+// this seems faster than previous
+class MyCalendar3 {
+  private booked: number[][];
+  constructor() {
+    this.booked = [];
+  }
+
+  book(start: number, end: number): boolean {
+    if (this.booked.filter((e) => e[0] < end && e[1] > start).length !== 0)
+      return false;
+    this.booked.push([start, end]);
+    return true;
+  }
+}
+
+// Tree, seems fastest solution
+class CalendarNode {
+  private _start: number;
+  private _end: number;
+  private _left: CalendarNode | null;
+  private _right: CalendarNode | null;
+
+  constructor(start: number, end: number) {
+    this._start = start;
+    this._end = end;
+    this._left = null;
+    this._right = null;
+  }
+
+  public add(start: number, end: number): boolean {
+    if (start >= this._end) {
+      if (!this._right) {
+        this._right = new CalendarNode(start, end);
+        return true;
+      }
+      return this._right.add(start, end);
+    } else if (end <= this._start) {
+      if (!this._left) {
+        this._left = new CalendarNode(start, end);
+        return true;
+      }
+      return this._left.add(start, end);
+    }
+    return false;
+  }
+}
+
+class MyCalendar4 {
+  private root: CalendarNode | null;
+  constructor() {
+    this.root = null;
+  }
+
+  book(start: number, end: number): boolean {
+    if (!this.root) {
+      this.root = new CalendarNode(start, end);
+      return true;
+    }
+    return this.root.add(start, end);
   }
 }
