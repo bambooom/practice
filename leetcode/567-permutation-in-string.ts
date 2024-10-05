@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/permutation-in-string/
 // Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
 
 // 1. brute
@@ -123,3 +124,30 @@ function checkInclusion5(s1: string, s2: string): boolean {
 // 6. optimized sliding window
 // keep a track of the number of elements which were already matching in the earlier hashmap
 // and update just the count of matching elements when we shift the window towards the right.
+
+// https://leetcode.com/problems/permutation-in-string/solutions/1763914/simple-javascript-typescript-solution/
+function checkInclusion7(s1: string, s2: string): boolean {
+  const chars = new Array(26).fill(0);
+
+  const isPermutation = () => chars.every((char) => char === 0);
+
+  const start = 'a'.charCodeAt(0);
+
+  for (const char of s1) {
+    chars[char.charCodeAt(0) - start]++;
+  }
+
+  for (let i = 0; i < s2.length; i++) {
+    chars[s2[i].charCodeAt(0) - start]--;
+
+    if (i >= s1.length) {
+      chars[s2[i - s1.length].charCodeAt(0) - start]++;
+    }
+
+    if (isPermutation()) {
+      return true;
+    }
+  }
+
+  return false;
+}
