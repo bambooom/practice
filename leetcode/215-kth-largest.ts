@@ -58,6 +58,7 @@ function findKthLargest(nums: number[], k: number): number {
 }
 
 // https://leetcode.com/problems/kth-largest-element-in-an-array/?envType=study-plan-v2&envId=leetcode-75
+// this solution time limit exceeded??? why
 function findKthLargest2(nums: number[], k: number): number {
   const quickselect = (lo: number, hi: number, K: number): number => {
     const pivot = hi;
@@ -75,4 +76,28 @@ function findKthLargest2(nums: number[], k: number): number {
     else return quickselect(lo, storedIdx - 1, K);
   };
   return quickselect(0, nums.length - 1, nums.length - k);
+}
+
+// https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/5859598/easy-typescript-solution-using-priority-queue-with-full-explanation/?envType=study-plan-v2&envId=top-100-liked
+function findKthLargest3(nums: number[], k: number): number {
+  // leetcode built-in MaxPriorityQueue
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // initialize maxPQ as instance of of MaxPriorityQueue (It's PriorityQueue package from @datastructures-js and it supported by Leetcode)
+  const maxPQ = new MaxPriorityQueue();
+
+  // loop through the every element of array nums and call enqueue method to add num in maxPQ
+  nums.forEach((num) => maxPQ.enqueue(num));
+
+  // run while loop until k is greater than 1
+  while (k > 1) {
+    // call dequeue method to remove highest element from maxPQ
+    maxPQ.dequeue();
+
+    // decreasse k by 1
+    k--;
+  }
+
+  // call the front method to return largest element from maxPQ
+  return maxPQ.front().element;
 }
