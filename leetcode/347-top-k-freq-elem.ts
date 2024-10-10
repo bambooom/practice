@@ -18,3 +18,17 @@ function topKFrequentElems(nums: number[], k: number): number[] {
 
   return res;
 }
+
+// https://leetcode.com/problems/top-k-frequent-elements/solutions/3551664/typescript-frequency-count-and-then-sort-runtime-97-memory-70/?envType=study-plan-v2&envId=top-100-liked
+// a little faster maybe
+function topKFrequentElems2(nums: number[], k: number): number[] {
+  const freq: { [key: number]: number } = {};
+  for (const n of nums) {
+    if (freq[n] === undefined) freq[n] = 0;
+    freq[n] += 1;
+  }
+  return Object.entries(freq)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, k)
+    .map((v) => Number(v[0]));
+}
