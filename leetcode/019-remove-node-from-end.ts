@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list
 // Given the head of a linked list, remove the nth node from the end of the list and return its head.
 
 // Input: head = [1,2,3,4,5], n = 2
@@ -57,4 +58,30 @@ function removeNthFromEnd2(head: ListNode | null, n: number): ListNode | null {
   }
   slow.next = (slow.next as ListNode).next;
   return dummy.next;
+}
+
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list/solutions/4813477/beats-100-with-proof-very-easy-to-understand/?envType=study-plan-v2&envId=top-100-liked
+function removeNthFromEnd3(head: ListNode | null, n: number): ListNode | null {
+  const findLength = (head: ListNode | null): number => {
+    let count = 0;
+    if (head === null) return count;
+    let curr: ListNode | null = head;
+    while (curr !== null) {
+      count++;
+      curr = curr.next;
+    }
+    return count;
+  };
+
+  const length = findLength(head);
+  let i = 0;
+  const traverseTill = length - n - 1;
+
+  let curr: ListNode | null = head;
+  while (i < traverseTill) {
+    curr = curr?.next as ListNode;
+    i++;
+  }
+  curr!.next = curr?.next?.next as ListNode;
+  return head;
 }
