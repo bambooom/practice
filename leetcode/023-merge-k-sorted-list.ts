@@ -32,6 +32,7 @@ const mergeKLists1 = function (lists: Array<ListNode | null>): ListNode | null {
     return min;
   }
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const min = findMin(lists);
     if (min === Infinity) return dummyHead.next;
@@ -99,8 +100,8 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   }
 
   while (lists.length > 1) {
-    const a = lists.shift();
-    const b = lists.shift();
+    const a = lists.shift()!;
+    const b = lists.shift()!;
     const res = mergeTwoLists(a, b);
     lists.push(res);
   }
@@ -111,16 +112,25 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
 // https://leetcode.com/problems/merge-k-sorted-lists/solutions/10617/javascript-o-n-log-k-time-and-o-k-space-using-min-heap/
 
 class Heap {
-  constructor(comparator) {
+  data: ListNode[];
+  comparator: {
+    (parent: any, child: any): number;
+    (parent: any, child: any): number;
+  };
+  constructor(comparator: {
+    (parent: any, child: any): number;
+    (parent: any, child: any): number;
+  }) {
     this.data = [];
-    this.comparator = comparator || ((parent, child) => parent - child);
+    this.comparator =
+      comparator || ((parent: number, child: number) => parent - child);
   }
 
   get size() {
     return this.data.length;
   }
 
-  bubbleUp(c) {
+  bubbleUp(c: number) {
     if (c === 0) return;
     const p = Math.floor((c + 1) / 2) - 1;
     if (this.comparator(this.data[p], this.data[c]) > 0) {
@@ -129,7 +139,7 @@ class Heap {
     this.bubbleUp(p);
   }
 
-  bubbleDown(p) {
+  bubbleDown(p: number) {
     const c = 2 * (p + 1) - 1;
     if (c >= this.data.length) return;
 
@@ -140,7 +150,7 @@ class Heap {
         : this.comparator(this.data[p], this.data[c + 1]);
     if (leftDelta <= 0 && rightDelta <= 0) return;
 
-    const swapChildIndex = c + (leftDelta <= rightDelta);
+    const swapChildIndex = c + (leftDelta <= rightDelta ? 1 : 0);
     [this.data[p], this.data[swapChildIndex]] = [
       this.data[swapChildIndex],
       this.data[p],
@@ -148,7 +158,7 @@ class Heap {
     this.bubbleDown(swapChildIndex);
   }
 
-  add(val) {
+  add(val: ListNode) {
     this.data.push(val);
     this.bubbleUp(this.data.length - 1);
   }
@@ -165,10 +175,12 @@ class Heap {
   }
 }
 
-const mergeKLists3 = function (lists) {
+const mergeKLists3 = function (lists: string | any[]) {
   if (!lists.length) return null;
 
-  const minHeap = new Heap((parent, child) => parent.val - child.val);
+  const minHeap = new Heap(
+    (parent: { val: number }, child: { val: number }) => parent.val - child.val,
+  );
   for (const node of lists) {
     if (node) minHeap.add(node);
   }
@@ -176,7 +188,7 @@ const mergeKLists3 = function (lists) {
   const dummy = new ListNode();
   let tail = dummy;
   while (minHeap.size) {
-    tail.next = minHeap.poll();
+    tail.next = minHeap.poll()!;
     tail = tail.next;
     if (tail.next) minHeap.add(tail.next);
   }
