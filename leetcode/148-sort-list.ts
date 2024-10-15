@@ -46,7 +46,7 @@ function merge(
   while (left !== null || right !== null) {
     if (left === null) {
       pointer.next = right;
-      right = right.next;
+      right = right!.next;
     } else if (right === null) {
       pointer.next = left;
       left = left.next;
