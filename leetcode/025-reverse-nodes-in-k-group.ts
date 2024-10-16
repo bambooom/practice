@@ -1,4 +1,7 @@
 // https://leetcode.com/problems/reverse-nodes-in-k-group/
+// Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+// k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+// You may not alter the values in the list's nodes, only nodes themselves may be changed.
 // #recursive
 
 // Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
@@ -59,4 +62,40 @@ function reverseKGroup2(head: ListNode | null, k: number): ListNode | null {
     }
   }
   return newNode.next;
+}
+
+// https://leetcode.com/problems/reverse-nodes-in-k-group/solutions/5635770/reversing-nodes-in-k-group-in-a-singly-linked-list/?envType=study-plan-v2&envId=top-100-liked
+// seems faster, but use more memory
+function reverseKGroup3(head: ListNode | null, k: number): ListNode | null {
+  if (k === 1) return head;
+
+  const dummy = new ListNode(0, head);
+  let root: ListNode | null = dummy;
+  while (root != null) {
+    const prev: ListNode = root;
+    let cur: ListNode | null = root;
+
+    let count = 0;
+    while (count !== k) {
+      count++;
+      cur = cur.next;
+      if (cur == null) {
+        return dummy.next;
+      }
+    }
+
+    const nextRoot = prev.next;
+    prev.next = cur;
+
+    let node: ListNode | null = nextRoot!;
+    let next = node.next;
+    node.next = cur.next;
+
+    while (node != cur) {
+      [next!.next, node, next] = [node, next, next!.next];
+    }
+    root = nextRoot;
+  }
+
+  return dummy.next;
 }
