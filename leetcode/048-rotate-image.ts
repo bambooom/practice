@@ -58,3 +58,16 @@ const rotateMatrix2 = function (matrix: number[][]) {
   transpose(matrix);
   rotate(matrix);
 };
+
+// https://leetcode.com/problems/rotate-image/solutions/2617602/easy-to-understand-typescript-solution-with-explanation/?envType=study-plan-v2&envId=top-100-liked
+// transpose and then reverse each row
+function rotateMatrix3(matrix: number[][]): void {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = i; j < matrix.length; j++) {
+      // Transpose
+      [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
+    }
+  }
+  // Reverse
+  matrix.forEach((arr) => arr.reverse());
+}
