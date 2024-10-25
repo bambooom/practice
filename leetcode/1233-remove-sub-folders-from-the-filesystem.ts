@@ -25,7 +25,7 @@ function removeSubfolders(folder: string[]): string[] {
 
   const ans: string[] = [folder[0]];
 
-  for (let i = 0; i < folder.length; i++) {
+  for (let i = 1; i < folder.length; i++) {
     // get the last added folder path and add a trailing slash
     const lastFolder = ans[ans.length - 1] + '/';
 
