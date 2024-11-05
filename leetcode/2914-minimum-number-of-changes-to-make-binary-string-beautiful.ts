@@ -30,6 +30,7 @@
 // Explanation: We don't need to make any changes as the string "0000" is beautiful already.
 
 // https://leetcode.com/problems/minimum-number-of-changes-to-make-binary-string-beautiful/solutions/6008345/beats-100-00-for-loop-explained-with-example/
+// for each pair s[i],s[i+1], we chech if they are the same, if not, it counts as one required to make them identical
 function minChanges(s: string): number {
   let count = 0;
   for (let i = 0; i < s.length; i = i + 2) {
