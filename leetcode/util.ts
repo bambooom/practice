@@ -75,3 +75,19 @@ export class _Node {
     this.children = c;
   }
 }
+
+/**
+ * Definition for R_Node, each node contains an additional random pointer.
+ */
+
+export class R_Node {
+  val: number;
+  next: R_Node | null;
+  random: R_Node | null;
+
+  constructor(v?: number, next?: R_Node, random?: R_Node) {
+    this.val = v === undefined ? 0 : v;
+    this.next = next === undefined ? null : next;
+    this.random = random === undefined ? null : random;
+  }
+}
