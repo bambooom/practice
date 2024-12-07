@@ -20,3 +20,22 @@ Medium/Hard:
 - [22. Generate Parentheses]
 - [65. Valid Number]
 - [49. Group Anagrams]
+
+Most common Array Interview Problems
+
+Easy:
+- [1. Two Sum] (common warm-up)
+- [121. Best Time to Buy and Sell Stock]
+- [88. Merge Sorted Array]
+- [27. Remove Element]
+- [929. Unique Email Addresses]
+
+Medium/Hard:
+- [15. 3Sum]
+- [42. Trapping Rain Water]
+- [56. Merge Intervals]
+- [57. Insert Interval]
+- [46. Permutations]
+- [53. Maximum Subarray]
+- [73. Set Matrix Zeroes]
+- [284. Peeking Iterator]
