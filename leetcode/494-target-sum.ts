@@ -61,3 +61,25 @@ function findTargetSumWays2(nums: number[], target: number): number {
 }
 
 console.log(findTargetSumWays2([1, 0], 1)); // expected 2?
+
+// https://leetcode.com/problems/target-sum/solutions/5364411/standard-backtracking-pattern/
+function findTargetSumWays3(nums: number[], target: number): number {
+  let count = 0;
+
+  const backtrack = (index: number, sum: number) => {
+    if (index === nums.length) {
+      if (sum === target) {
+        count++;
+      }
+      return;
+    }
+
+    // add the current number
+    backtrack(index + 1, sum + nums[index]);
+    // subtrack the current number
+    backtrack(index + 1, sum - nums[index]);
+  };
+
+  backtrack(0, 0);
+  return count;
+}
