@@ -70,3 +70,58 @@ function shortestCommonSupersequence(str1: string, str2: string): string {
   result += str1.slice(i) + str2.slice(j);
   return result;
 }
+
+// https://neetcode.io/solutions/shortest-common-supersequence
+// https://www.youtube.com/watch?v=JkjQNJSxXN0
+// bottom up dynamic programming + tracing
+function shortestCommonSupersequence2(str1: string, str2: string): string {
+  const n = str1.length,
+    m = str2.length;
+  const dp: number[][] = Array.from({ length: n + 1 }, () =>
+    Array(m + 1).fill(0),
+  );
+
+  for (let i = 0; i <= n; i++) {
+    for (let j = 0; j <= m; j++) {
+      if (i === 0) {
+        dp[i][j] = j;
+      } else if (j === 0) {
+        dp[i][j] = i;
+      } else if (str1[i - 1] === str2[j - 1]) {
+        dp[i][j] = 1 + dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+
+  const res: string[] = [];
+  let i = n,
+    j = m;
+
+  while (i > 0 && j > 0) {
+    if (str1[i - 1] === str2[j - 1]) {
+      res.push(str1[i - 1]);
+      i--;
+      j--;
+    } else if (dp[i - 1][j] < dp[i][j - 1]) {
+      res.push(str1[i - 1]);
+      i--;
+    } else {
+      res.push(str2[j - 1]);
+      j--;
+    }
+  }
+
+  while (i > 0) {
+    res.push(str1[i - 1]);
+    i--;
+  }
+
+  while (j > 0) {
+    res.push(str2[j - 1]);
+    j--;
+  }
+
+  return res.reverse().join('');
+}
