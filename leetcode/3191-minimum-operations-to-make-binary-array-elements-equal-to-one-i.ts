@@ -66,3 +66,19 @@ function minOperations2(nums: number[]): number {
 
   return count;
 }
+
+// greedy approach, when we see a 0, flip the next 3 elements
+function minOperations3(nums: number[]): number {
+  const length = nums.length - 3;
+  let result = 0;
+
+  for (let i = 0; i <= length; i++) {
+    if (nums[i] === 1) continue;
+    result++;
+    nums[i] = 1;
+    nums[i + 1] = +!nums[i + 1];
+    nums[i + 2] = +!nums[i + 2];
+  }
+
+  return nums[length] && nums[length + 1] && nums[length + 2] ? result : -1;
+}
