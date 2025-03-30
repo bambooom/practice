@@ -22,13 +22,32 @@
 function partitionLabels(s: string): number[] {
   if (!s) return [];
   let last = -1;
-  const res = [];
+  const res: number[] = [];
   let left = 0;
   for (let i = 0; i < s.length; i++) {
     last = Math.max(s.lastIndexOf(s[i]), last);
     if (i === last) {
       res.push(i - left + 1);
       left = i + 1; // move left pointer
+    }
+  }
+  return res;
+}
+
+function partitionLabels2(s: string): number[] {
+  let l = 0;
+  let r = 0;
+  const lastMap = new Map<string, number>();
+  const res = [];
+  for (let i = 0; i < s.length; i += 1) {
+    lastMap.set(s[i], i);
+  }
+  for (let i = 0; i < s.length; i += 1) {
+    const cur = s[i];
+    r = Math.max(lastMap.get(cur)!, r);
+    if (i === r) {
+      res.push(r - l + 1);
+      l = r + 1;
     }
   }
   return res;
