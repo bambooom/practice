@@ -56,3 +56,26 @@ function canPartition2(nums: number[]): boolean {
 
   return false;
 }
+
+function canPartition3(nums: number[]): boolean {
+  const sum = nums.reduce((a, b) => a + b);
+  if (sum % 2 !== 0) {
+    return false;
+  }
+
+  const half = sum / 2;
+  const dp = new Array(nums.length).fill(false);
+  // represents whether it's possible to achieve a certain sum using the numbers in the array
+  dp[0] = true; // Base case: Subset sum of 0 is always possible (empty subset)
+
+  for (const num of nums) {
+    for (let i = half; i >= num; i--) {
+      // if sum i-num is achievable, then sum i (adding num) is also achievable
+      if (dp[i - num] === true) {
+        dp[i] = true;
+      }
+    }
+  }
+
+  return dp[half];
+}
