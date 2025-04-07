@@ -34,7 +34,7 @@ function canPartition2(nums: number[]): boolean {
   }
 
   const half = sum / 2;
-  const dp = new Array(nums.length).fill(false);
+  const dp = new Array(half + 1).fill(false);
   // represents whether it's possible to achieve a certain sum using the numbers in the array
   dp[0] = true; // Base case: Subset sum of 0 is always possible (empty subset)
 
