@@ -35,12 +35,15 @@ function canPartition2(nums: number[]): boolean {
 
   const half = sum / 2;
   const dp = new Array(nums.length).fill(false);
-  dp[0] = true;
+  // represents whether it's possible to achieve a certain sum using the numbers in the array
+  dp[0] = true; // Base case: Subset sum of 0 is always possible (empty subset)
 
   for (let i = nums.length - 1; i >= 0; i--) {
     const num = nums[i];
-
+    // For each number, iterate through the DP array from the target sum (half) down to 0.
     for (let j = half; j >= 0; j--) {
+      // if current sum j in DP is achievable and adding the current number num doesn't exceed the target sum (half)
+      // then mark the new sum (j + num) as achievable
       if (dp[j] === true && j + num <= half) {
         dp[j + num] = true;
       }
