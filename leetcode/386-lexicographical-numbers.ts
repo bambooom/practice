@@ -38,3 +38,22 @@ function lexicalOrder2(n: number): number[] {
   backtracking(0);
   return res.slice(1);
 }
+
+// iterative
+function lexicalOrder3(n: number): number[] {
+  const res: number[] = [];
+
+  for (let i = 0, curr = 1; i < n; i++) {
+    res.push(curr);
+    curr *= 10;
+
+    if (curr > n) {
+      while (curr % 10 === 9 || curr >= n) {
+        curr = Math.floor(curr / 10);
+      }
+      curr++;
+    }
+  }
+
+  return res;
+}
