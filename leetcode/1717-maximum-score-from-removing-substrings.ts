@@ -40,7 +40,7 @@ function maximumGain(s: string, x: number, y: number): number {
     }
   }
 
-  // second pass: remove the lower scroing substring
+  // second pass: remove the lower scroing substring, from first stack, not original string s
   const newStack: string[] = [];
   for (const char of stack) {
     if (
@@ -55,4 +55,31 @@ function maximumGain(s: string, x: number, y: number): number {
   }
 
   return score;
+}
+
+// https://leetcode.com/problems/maximum-score-from-removing-substrings/solutions/6845673/typescript-using-stack/?envType=daily-question&envId=2025-07-23
+
+function maximumGain2(s: string, x: number, y: number): number {
+  const [first, second] = x > y ? ['ab', 'ba'] : ['ba', 'ab'];
+
+  function countPattern(s: string, pattern: string) {
+    let count = 0;
+    const stack = [];
+
+    for (const char of s) {
+      if (stack.at(-1) === pattern[0] && char === pattern[1]) {
+        count++;
+        stack.pop();
+      } else {
+        stack.push(char);
+      }
+    }
+
+    return { count, s: stack.join('') };
+  }
+
+  const { count: c1, s: rest } = countPattern(s, first);
+  const { count: c2 } = countPattern(rest, second);
+
+  return c1 * Math.max(x, y) + c2 * Math.min(x, y);
 }
