@@ -60,21 +60,27 @@ function countMaxOrSubsets(nums: number[]): number {
 // https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/solutions/5928822/time-o-2-n-space-o-n/
 // dfs
 function countMaxOrSubsets2(nums: number[]): number {
-  let maxOR = 0;
+  let maxOR = 0; // maximum possible bitwise OR value
   for (const num of nums) {
     maxOR |= num;
   }
 
+  // use dfs to explore all possible subsets of the input array.
   const dfs = (
-    nums: number[],
-    i: number,
-    val: number,
-    goal: number,
+    nums: number[], // input array
+    i: number, // current index
+    val: number, // current bitwise OR value
+    goal: number, // goal: maximum bitwise OR value
   ): number => {
     if (i < 0) {
+      // it means we've reached the end of the array
+      // and we return 1 if the current bitwise OR value equals the goal, and 0 otherwise.
       return +(val == goal);
     }
-
+    // recursively calls itself twice
+    // once with the current index decremented and the current bitwise OR value unchanged
+    // once with the current index decremented and the current bitwise OR value updated by performing a bitwise OR operation with the current element
+    // return sum of two calls
     return dfs(nums, i - 1, val, goal) + dfs(nums, i - 1, val | nums[i], goal);
   };
 
