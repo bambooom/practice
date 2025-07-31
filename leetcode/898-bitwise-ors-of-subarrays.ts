@@ -20,6 +20,18 @@
 // Output: 6
 // Explanation: The possible results are 1, 2, 3, 4, 6, and 7.
 
+// https://leetcode.com/problems/bitwise-ors-of-subarrays/solutions/4113017/typescript-javascript-beats-100-time-and-50-memory-full-explanation/?envType=daily-question&envId=2025-07-31
+// 1. Initialize an empty array bits to store the bitwise OR values of subarrays and a variable l to keep track of the left pointer.
+// 2. Start a loop that iterates through each element of the input array arr.
+// 3. Inside the loop, get the current length of the bits array and store it in r.
+// 4. Push the current element of arr into the bits array. This represents the bitwise OR of a subarray consisting of only the current element.
+// 5. Start a while loop with the left pointer l initially set to 0. This loop is used to calculate the bitwise OR of subarrays that include the current element.
+// 6. Inside the while loop, calculate the bitwise OR of the element at index l and the last element in the bits array, which is the current element from step 4.
+// 7. If the calculated bitwise OR value is not equal to the previous value in the bits array, push this new value into the bits array. This step ensures that we add distinct bitwise OR values to the bits array.
+// 8. Increment the left pointer l.
+// 9. Repeat steps 6-8 until l is less than r. This loop processes all the subarrays that include the current element.
+// 10. Continue with the outer loop, moving to the next element in the input array arr.
+// 11. After processing all elements, return the size of a Set created from the bits array. Using a Set ensures that we only count distinct bitwise OR values.
 function subarrayBitwiseORs(arr: number[]): number {
   const bits: number[] = []; // store the bitwise ORs
   let l = 0; // a pointer to the start of the bits array
