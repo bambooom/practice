@@ -6,6 +6,11 @@
 // If a fruit type cannot be placed in any basket, it remains unplaced.
 // Return the number of fruit types that remain unplaced after all possible allocations are made.
 
+// Constraints:
+// n == fruits.length == baskets.length
+// 1 <= n <= 100
+// 1 <= fruits[i], baskets[i] <= 1000
+
 // Example 1:
 // Input: fruits = [4,2,5], baskets = [3,5,4]
 // Output: 1
@@ -24,7 +29,7 @@
 // fruits[2] = 1 is placed in baskets[1] = 4.
 // Since all fruits are successfully placed, we return 0.
 
-function numOfUnplacedFruits(fruits: number[], baskets: number[]): number {
+function numOfUnplacedFruitsII(fruits: number[], baskets: number[]): number {
   const basketEmpty = new Array(baskets.length).fill(true);
   let unplaced = 0;
 
