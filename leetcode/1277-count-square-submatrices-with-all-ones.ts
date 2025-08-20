@@ -70,27 +70,37 @@ function countSquares(matrix: number[][]): number {
 function countSquares2(matrix: number[][]): number {
   let res = 0;
 
+  // Helper function to check if a square can be formed at position (i, j)
   const checkSquare = (i: number, j: number) => {
-    const a = matrix[i - 1][j - 1];
-    const b = matrix[i][j - 1];
-    const c = matrix[i - 1][j];
+    const a = matrix[i - 1][j - 1]; // top-left
+    const b = matrix[i][j - 1]; // left
+    const c = matrix[i - 1][j]; // top
 
+    // If all three neighbors are 1, it means a square can be formed
+    // The size of the square is the minimum size of the three neighbors plus 1
     if (a & b & c) {
       matrix[i][j] += Math.min(a, b, c);
+      // storing the size of the largest square that can be formed at position (i, j)
+      // This updated value is then used in the next iterations of the algorithm, when we're checking the neighbors of the cells below and to the right of (i, j).
+      // Because we've updated the matrix in-place, the values of the neighbors that we're checking are already taking into account the sizes of the squares that can be formed above and to the left.
+      // This means that when we're checking if a square can be formed at a given position, we're not just checking the current cell and its immediate neighbors - we're actually checking the entire "history" of squares that can be formed above and to the left.
     }
   };
 
   const rows = matrix.length;
   const cols = matrix[0].length;
 
+  // Iterate over the matrix, starting from the second row and column
   for (let i = 1; i < rows; i++) {
     for (let j = 1; j < cols; j++) {
+      // If the current cell is 1, check if a square can be formed
       if (matrix[i][j]) {
         checkSquare(i, j);
       }
     }
   }
 
+  // Sum up the sizes of all squares
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       res += matrix[i][j];
