@@ -6,20 +6,28 @@
 
 // without sliding-window
 function longestSubarray(nums: number[]): number {
+  // base cases:
+  // 1. if length is less than 1, return 0, must delete one element
   if (nums.length <= 1) return 0;
+  // 2. if there is no 1, return 0
   if (!nums.includes(1)) return 0;
+  // 3. if there is no 0, return length - 1, must delete one element
   if (!nums.includes(0)) return nums.length - 1;
 
-  let maxLength = 0;
-  let count = 0;
-  let onesBefore = 0;
+  let maxLength = 0; // Maximum length of consecutive 1s seen so far
+  let count = 0; // Current count of consecutive 1s
+  let onesBefore = 0; // Count of 1s before the current number
   for (const num of nums) {
     if (num) {
-      // 1
-      count++;
+      // is 1
+      count++; // increase count
+      // Update the maximum length if the current count plus the count of 1s before
+      // the current number is greater than the maximum length
+      // keep the possibility that can delete 0 to connect two 1s
       maxLength = Math.max(maxLength, count + onesBefore);
     } else {
       // 0
+      // If the current number is 0, reset the count and update the count of 1s before
       onesBefore = count;
       count = 0; // reset count
     }
