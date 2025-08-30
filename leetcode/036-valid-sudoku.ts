@@ -1,4 +1,12 @@
+// https://leetcode.com/problems/valid-sudoku
 // valid sudoku
+// Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+// Each row must contain the digits 1-9 without repetition.
+// Each column must contain the digits 1-9 without repetition.
+// Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+// Note:
+// A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+// Only the filled cells need to be validated according to the mentioned rules.
 
 // stupid solution, not scalable
 function isValidSudoku(board: string[][]): boolean {
@@ -86,3 +94,53 @@ const isValidSudoku2 = function (board: string[][]) {
   }
   return true;
 };
+
+// https://leetcode.com/problems/valid-sudoku/solutions/3474482/typescript-easy-solution-using-set/?envType=daily-question&envId=2025-08-30
+function isValidSudoku3(board: string[][]): boolean {
+  const set = new Set();
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const cell = board[i][j];
+      if (cell === '.') continue;
+
+      const row = `row: ${i}, value: ${cell}`;
+      const column = `column: ${j}, value: ${cell}`;
+      const boxNumber = 3 * Math.floor(i / 3) + Math.floor(j / 3);
+      const box = `boxNumber: ${boxNumber}, value: ${cell}`;
+
+      if (set.has(row) || set.has(column) || set.has(box)) return false;
+      set.add(row).add(column).add(box);
+    }
+  }
+  return true;
+}
+
+// https://leetcode.com/problems/valid-sudoku/solutions/7136639/valid-sudoku-100-beat-o-1-java-c-c-c-python3-go-javascript-typescript/?envType=daily-question&envId=2025-08-30
+function isValidSudoku4(board: string[][]): boolean {
+  const rows: boolean[][] = Array.from({ length: 9 }, () =>
+    Array(9).fill(false),
+  );
+  const cols: boolean[][] = Array.from({ length: 9 }, () =>
+    Array(9).fill(false),
+  );
+  const boxes: boolean[][] = Array.from({ length: 9 }, () =>
+    Array(9).fill(false),
+  );
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] !== '.') {
+        const num = board[i][j].charCodeAt(0) - '1'.charCodeAt(0);
+        const boxIndex = Math.floor(i / 3) * 3 + Math.floor(j / 3);
+
+        if (rows[i][num] || cols[j][num] || boxes[boxIndex][num]) {
+          return false;
+        }
+
+        rows[i][num] = cols[j][num] = boxes[boxIndex][num] = true;
+      }
+    }
+  }
+  return true;
+}
