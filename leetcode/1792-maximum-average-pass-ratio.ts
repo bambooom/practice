@@ -19,7 +19,9 @@
 import { MaxPriorityQueue } from '@datastructures-js/priority-queue';
 
 function maxAverageRatio(classes: number[][], extraStudents: number): number {
+  // Create a max priority queue to prioritize classes based on the gain in pass ratio when adding a student
   const pq = new MaxPriorityQueue<[number, number]>(([p, t]) => {
+    // Calculate the gain in pass ratio when adding a student to a class
     const gain = (p + 1) / (t + 1) - p / t;
     return gain;
   });
@@ -28,14 +30,19 @@ function maxAverageRatio(classes: number[][], extraStudents: number): number {
     pq.enqueue([p, t]);
   }
 
+  // Assign extra students to classes with the highest gain in pass ratio
   while (extraStudents--) {
+    // Dequeue the class with the highest gain
     const [p, t] = pq.dequeue();
 
+    // Add a student to the class and enqueue it back into the priority queue
     pq.enqueue([p + 1, t + 1]);
   }
 
+  // Get the updated classes from the priority queue
   const updatedClasses = pq.toArray();
+  // Calculate the sum of pass ratios for all classes
   const sumRatio = updatedClasses.reduce((acc, [p, t]) => acc + p / t, 0);
-
+  // Return the average pass ratio
   return sumRatio / updatedClasses.length;
 }
