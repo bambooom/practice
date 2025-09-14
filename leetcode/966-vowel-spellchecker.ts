@@ -30,7 +30,7 @@ function spellchecker(wordlist: string[], queries: string[]): string[] {
   const lowerMap = new Map<string, string>(); // Map to store lowercase word matches
   const vowelMap = new Map<string, string>(); // Map to store masked word matches
 
-  const isVowel = (c: string) => 'aeios'.includes(c);
+  const isVowel = (c: string) => 'aeiou'.includes(c);
   // Helper function to mask vowels in a string.
   // Replaces all vowels with the letter 'a'.
   const maskVowels = (s: string) => {
