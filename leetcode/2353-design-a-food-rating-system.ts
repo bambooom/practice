@@ -42,40 +42,40 @@
 // cuisine will be a type of cuisine of at least one food item in the system across all calls to highestRated.
 // At most 2 * 104 calls in total will be made to changeRating and highestRated.
 
-class FoodRatings {
-  foods: string[];
-  cuisines: string[];
-  ratings: number[];
-  constructor(foods: string[], cuisines: string[], ratings: number[]) {
-    this.foods = foods;
-    this.cuisines = cuisines;
-    this.ratings = ratings;
-  }
+// class FoodRatings {
+//   foods: string[];
+//   cuisines: string[];
+//   ratings: number[];
+//   constructor(foods: string[], cuisines: string[], ratings: number[]) {
+//     this.foods = foods;
+//     this.cuisines = cuisines;
+//     this.ratings = ratings;
+//   }
 
-  changeRating(food: string, newRating: number): void {
-    const index = this.foods.indexOf(food);
-    this.ratings[index] = newRating;
-  }
+//   changeRating(food: string, newRating: number): void {
+//     const index = this.foods.indexOf(food);
+//     this.ratings[index] = newRating;
+//   }
 
-  highestRated(cuisine: string): string {
-    let high = 0;
-    let highIndex = 0;
-    for (let i = 0; i < this.cuisines.length; i++) {
-      if (this.cuisines[i] === cuisine) {
-        if (this.ratings[i] > high) {
-          high = this.ratings[i];
-          highIndex = i;
-        } else if (this.ratings[i] === high) {
-          if (this.foods[highIndex] > this.foods[i]) {
-            highIndex = i;
-          }
-        }
-      }
-    }
+//   highestRated(cuisine: string): string {
+//     let high = 0;
+//     let highIndex = 0;
+//     for (let i = 0; i < this.cuisines.length; i++) {
+//       if (this.cuisines[i] === cuisine) {
+//         if (this.ratings[i] > high) {
+//           high = this.ratings[i];
+//           highIndex = i;
+//         } else if (this.ratings[i] === high) {
+//           if (this.foods[highIndex] > this.foods[i]) {
+//             highIndex = i;
+//           }
+//         }
+//       }
+//     }
 
-    return this.foods[highIndex];
-  }
-}
+//     return this.foods[highIndex];
+//   }
+// }
 
 /**
  * Your FoodRatings object will be instantiated and called as such:
@@ -83,3 +83,71 @@ class FoodRatings {
  * obj.changeRating(food,newRating)
  * var param_2 = obj.highestRated(cuisine)
  */
+
+// previous solution will TLE
+
+// https://leetcode.com/problems/design-a-food-rating-system/solutions/7198789/priority-queue-lazy-deletion-44-lines-o-log-n-88ms/?envType=daily-question&envId=2025-09-17
+
+import { PriorityQueue } from '@datastructures-js/priority-queue';
+
+type FoodItem = {
+  name: string;
+  rating: number;
+  cuisine: string;
+};
+
+const compareFoodItems = (first: FoodItem, second: FoodItem): number => {
+  return second.rating - first.rating || first.name.localeCompare(second.name);
+};
+
+class FoodRatings {
+  private foodLookupTable: Map<string, FoodItem>;
+
+  private cuisineRankings: Map<string, PriorityQueue<FoodItem>>;
+
+  constructor(foods: string[], cuisines: string[], ratings: number[]) {
+    this.foodLookupTable = new Map();
+    this.cuisineRankings = new Map();
+
+    for (const cuisineType of cuisines) {
+      if (this.cuisineRankings.has(cuisineType)) continue;
+      this.cuisineRankings.set(
+        cuisineType,
+        new PriorityQueue(compareFoodItems),
+      );
+    }
+
+    for (let index = 0; index < foods.length; index++) {
+      const foodItem: FoodItem = {
+        name: foods[index],
+        rating: ratings[index],
+        cuisine: cuisines[index],
+      };
+
+      this.foodLookupTable.set(foods[index], foodItem);
+
+      this.cuisineRankings.get(cuisines[index])!.enqueue({ ...foodItem });
+    }
+  }
+
+  changeRating(foodName: string, newRating: number): void {
+    const foodItem = this.foodLookupTable.get(foodName)!;
+    foodItem.rating = newRating;
+
+    this.cuisineRankings.get(foodItem.cuisine)!.enqueue({ ...foodItem });
+  }
+
+  highestRated(cuisineType: string): string {
+    const priorityQueue = this.cuisineRankings.get(cuisineType)!;
+
+    let frontItem = priorityQueue.front()!;
+    while (
+      frontItem.rating !== this.foodLookupTable.get(frontItem.name)!.rating
+    ) {
+      priorityQueue.dequeue();
+      frontItem = priorityQueue.front()!;
+    }
+
+    return priorityQueue.front()!.name;
+  }
+}
