@@ -39,6 +39,8 @@ function trapRainWater(heightMap: number[][]): number {
     [i, j + 1],
     [i, j - 1],
   ];
+
+  // creates a min-heap structure that will be used to store the cells of the matrix.
   const createMinHeap = () => {
     const heap: (number[] | null)[] = [null];
     const leftChild = (x: number) => x * 2;
@@ -101,8 +103,8 @@ function trapRainWater(heightMap: number[][]): number {
   };
 
   const heap = createMinHeap();
-  const visited = new Set();
-  let total = 0;
+  const visited = new Set<number>(); // keep track of visited cells
+  let total = 0; // store the total volume of trapped water.
   let waterline = 0;
 
   // add borders
@@ -124,9 +126,10 @@ function trapRainWater(heightMap: number[][]): number {
   // by working at the min border and moving in
   // its known that any depth below waterline will pool
   while (heap.size()) {
-    const [i, j, d] = heap.takeMin()!;
+    const [i, j, d] = heap.takeMin()!; // takes the cell with the minimum height from the heap
     waterline = Math.max(waterline, d);
 
+    // checks the neighboring cells.
     dirs(i, j).forEach(([di, dj]) => {
       const key = di + 0.1 / dj;
       if (visited.has(key) || di <= 0 || dj <= 0 || di >= endi || dj >= endj)
@@ -134,6 +137,7 @@ function trapRainWater(heightMap: number[][]): number {
       visited.add(key);
       const newd = heightMap[di][dj];
 
+      // If a neighboring cell is below the waterline, it adds the difference to the total volume of trapped water.
       if (newd < waterline) {
         total += waterline - newd;
       }
@@ -143,4 +147,49 @@ function trapRainWater(heightMap: number[][]): number {
   }
 
   return total;
+}
+
+// https://leetcode.com/problems/trapping-rain-water-ii/solutions/6302358/simple-solution-in-typescript/?envType=daily-question&envId=2025-10-03
+function trapRainWater2(heightMap: number[][]): number {
+  const n = heightMap.length;
+  const m = heightMap[0].length;
+  const pq: [number, [number, number]][] = [];
+  const vis: number[][] = Array.from({ length: n }, () => Array(m).fill(0)); // visited matrix
+
+  // Insert all the boundary columns and rows and mark them visited
+  // boundary first row and last row
+  for (let i = 0; i < m; i++) {
+    pq.push([heightMap[0][i], [0, i]]);
+    pq.push([heightMap[n - 1][i], [n - 1, i]]);
+    vis[0][i] = 1;
+    vis[n - 1][i] = 1;
+  }
+  // boundary first col and last col
+  for (let i = 1; i < n - 1; i++) {
+    pq.push([heightMap[i][0], [i, 0]]);
+    pq.push([heightMap[i][m - 1], [i, m - 1]]);
+    vis[i][0] = 1;
+    vis[i][m - 1] = 1;
+  }
+
+  const delrow = [-1, 0, 1, 0];
+  const delcol = [0, 1, 0, -1];
+  let ans = 0;
+
+  while (pq.length > 0) {
+    pq.sort((a, b) => a[0] - b[0]); // Min-heap
+    const [height, [row, col]] = pq.shift()!;
+
+    for (let i = 0; i < 4; i++) {
+      const nrow = row + delrow[i];
+      const ncol = col + delcol[i];
+
+      if (nrow >= 0 && ncol >= 0 && nrow < n && ncol < m && !vis[nrow][ncol]) {
+        ans += Math.max(height - heightMap[nrow][ncol], 0);
+        pq.push([Math.max(height, heightMap[nrow][ncol]), [nrow, ncol]]);
+        vis[nrow][ncol] = 1;
+      }
+    }
+  }
+  return ans;
 }
