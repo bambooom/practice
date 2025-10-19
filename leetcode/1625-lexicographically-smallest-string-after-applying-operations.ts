@@ -67,7 +67,7 @@ function findLexSmallestString(s: string, a: number, b: number): string {
 
     // Apply the first operation to all odd indices of the array by adding a modulo 10 to each of them
     for (let i = 1; i < arr.length; i += 2) {
-      arr[i] = ((parseInt(arr[i] + a) % 10).toString();
+      arr[i] = (parseInt(arr[i] + a) % 10).toString();
     }
 
     // Join the modified array back into a string
