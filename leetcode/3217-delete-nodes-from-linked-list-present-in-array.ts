@@ -9,21 +9,34 @@ import { ListNode } from './util';
 
 // hash set
 // https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/solutions/5743933/5-solutions-time-o-m-n-space-o-m/
+// https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/solutions/5746298/easy-on-solution-with-full-explanation-b-y8po/?envType=daily-question&envId=2025-11-01
 function modifiedList(nums: number[], head: ListNode | null): ListNode | null {
+  // convert nums array into a set for O(1) lookup
   const numSet = new Set(nums);
-  const root = new ListNode();
+  // create a dummy node to simplify edge cases handling
+  // the dummy node points to the head of the original list
+  const dummy = new ListNode(0);
+  dummy.next = head;
 
-  let tail = root;
-  while (head != null) {
-    if (!numSet.has(head.val)) {
-      tail.next = head;
-      tail = head;
+  // Initialize two pointers: `cur` for traversing the list,
+  // and `prev` to keep track of the last valid node
+  let cur = head;
+  let prev = dummy;
+
+  while (cur != null) {
+    // If the current node's value is in the set, it needs to be removed
+    if (numSet.has(cur.val)) {
+      // Skip the current node by linking the previous node to the next node
+      prev.next = cur.next;
+    } else {
+      prev = cur;
     }
-    head = head.next;
+    // Move the `cur` pointer to the next node in the list
+    cur = cur.next;
   }
-  tail.next = null;
 
-  return root.next;
+  // Return the modified list, starting from the node after the dummy
+  return dummy.next;
 }
 
 // sort + binary search, faster solution
