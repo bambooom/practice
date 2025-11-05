@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@datastructures-js/binary-search-tree':
+        specifier: ^5.4.0
+        version: 5.4.0
       '@datastructures-js/priority-queue':
         specifier: ^6.3.1
         version: 6.3.1
@@ -245,6 +248,9 @@ packages:
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
+
+  '@datastructures-js/binary-search-tree@5.4.0':
+    resolution: {integrity: sha512-dPmPRRgAEvfC1+xq9voBJcIanbXZbaOR1908R6RfhceXignnlCL1wX7LToPVHSKVCb+bGa+tAbK22cit0BLWDA==}
 
   '@datastructures-js/heap@4.3.3':
     resolution: {integrity: sha512-UcUu/DLh/aM4W3C8zZfwxxm6/6FIZUlm3mcAXuNOCa6Aj4iizNvNXQyb8DjZQH2jKSQbMRyNlngP6TPimuGjpQ==}
@@ -1962,6 +1968,8 @@ snapshots:
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+
+  '@datastructures-js/binary-search-tree@5.4.0': {}
 
   '@datastructures-js/heap@4.3.3': {}
 
