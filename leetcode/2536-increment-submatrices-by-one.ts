@@ -51,7 +51,7 @@ function rangeAddQueries(n: number, queries: number[][]): number[][] {
       const x1 = i === 0 ? 0 : mat[i - 1][j];
       const x2 = j === 0 ? 0 : mat[i][j - 1];
       const x3 = i === 0 || j === 0 ? 0 : mat[i - 1][j - 1];
-      mat[i][j] = diff[i][j] + x1 + x2 + x3;
+      mat[i][j] = diff[i][j] + x1 + x2 - x3;
     }
   }
 
