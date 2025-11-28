@@ -41,37 +41,41 @@ function maxKDivisibleComponents(
 ): number {
   let comp = 0;
 
-  // build adjacent list
+  // build adjacent list to represent the edges of the tree
   const adj: number[][] = Array.from({ length: n }, () => []);
   for (const [u, v] of edges) {
     adj[u].push(v);
     adj[v].push(u);
   }
 
+  // keep track of visited nodes
   const visited: boolean[] = new Array(n).fill(false);
 
+  // calculate the sum of values in each component and update the number of components
   const DFS = (u: number): number => {
-    visited[u] = true;
+    visited[u] = true; // Mark the current node as visited
     let sum = 0;
 
     for (const v of adj[u]) {
       if (!visited[v]) {
-        const vSum = DFS(v);
+        const vSum = DFS(v); // If the adjacent node has not been visited, recursively calculate the sum of values in its subtree
+
         if (vSum % k === 0) {
-          comp++;
+          comp++; // If the sum of values in the subtree is divisible by k, it can be split as a new component
         } else {
-          sum += vSum;
+          sum += vSum; // If the sum of values in the adjacent component is not divisible by k, add it to the current component
         }
       }
     }
 
-    sum += values[u];
+    sum += values[u]; // Add the value of the current node to the sum of values in the current component
     return sum;
   };
 
   const totalSum = DFS(0);
   if (totalSum % k === 0) {
-    comp++;
+    // If the total sum of values is divisible by k
+    comp++; // Increment the number of components
   }
 
   return comp;
