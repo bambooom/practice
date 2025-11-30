@@ -17,13 +17,17 @@
 // Explanation: Here the sum is 6. which is already divisible by 3. Thus we do not need to remove anything.
 
 function minSubarray(nums: number[], p: number): number {
+  // Calculate the target remainder by reducing the nums array and taking the modulo p of the sum of its elements
   const targetRemainder = nums.reduce((a, b) => (a + b) % p, 0);
 
+  // If the target remainder is 0, the sum of the elements is already divisible by p, so return 0
   if (targetRemainder === 0) {
     return 0;
   }
 
+  // Initialize a map to store the remainders of the prefix sums and their corresponding indices
   const map = new Map<number, number>();
+
   let curRemainder = 0;
   let minLen = Infinity;
   let curLen = 0;
@@ -31,17 +35,22 @@ function minSubarray(nums: number[], p: number): number {
   map.set(0, -1);
 
   for (let i = 0; i < nums.length; i++) {
+    // Update the current remainder by adding the current element and taking the modulo p
     curRemainder = (curRemainder + nums[i]) % p;
+
+    // Calculate the target remainder by subtracting the targetRemainder from the current remainder and taking the modulo p
     const target = (curRemainder - targetRemainder + p) % p;
 
+    // If the target remainder exists in the map, calculate the length of the subarray and update the minimum length if necessary
     if (map.has(target)) {
       curLen = i - map.get(target)!;
-
       minLen = Math.min(curLen, minLen);
     }
 
+    // Update the map with the current remainder and its index
     map.set(curRemainder, i);
   }
 
+  // Return the minimum length of the subarray, or -1 if no subarray needs to be removed
   return minLen === Infinity || minLen === nums.length ? -1 : minLen;
 }
