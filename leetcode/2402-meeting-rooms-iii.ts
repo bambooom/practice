@@ -44,6 +44,16 @@ interface UsedRoomInfo {
   room: number;
 }
 // https://leetcode.com/problems/meeting-rooms-iii/solutions/6636323/optimal-solution-using-heaps/?envType=daily-question&envId=2025-07-11
+// step-by-step breakdown of what the function does:
+// 1. It sorts the meetings array by the start time of each meeting.
+// 2. It initializes a MinPriorityQueue called unusedRooms to keep track of available rooms. The rooms are initialized with the numbers from 0 to n-1.
+// 3. It also initializes a PriorityQueue called usedRooms to keep track of rooms that are currently in use. The PriorityQueue is sorted based on the compareFn function, which compares two UsedRoomInfo objects by their end time (earlier finish comes first) and, if the end times are the same, by the room number (smaller room index comes first).
+// 4. It initializes an array counts of length n to keep track of the number of meetings held in each room.
+// 5. It iterates over the meetings array. For each meeting, it frees up any rooms that have finished their meetings before the current meeting starts.
+// 6. If there are available rooms, it assigns the meeting to the room with the lowest number.
+// 7. If all rooms are busy, it assigns the meeting to the room that will become available the soonest.
+// 8. After all meetings have been processed, it finds the room with the maximum number of meetings and returns its number.
+// This function uses a combination of priority queues and sorting to efficiently handle the scheduling of meetings in rooms.
 function mostBooked(n: number, meetings: number[][]): number {
   meetings.sort((a, b) => a[0] - b[0]); // sort by start date
   // keep track of available rooms
@@ -103,6 +113,9 @@ function mostBooked(n: number, meetings: number[][]): number {
 }
 
 //https://leetcode.com/problems/meeting-rooms-iii/solutions/4746747/beats-75-00-of-users-with-typescript/?envType=daily-question&envId=2025-07-11
+// For each meeting, it checks if any room is available for the meeting.
+// If a room is available, it updates the lastAvailable time for that room and increments the roomUsedCount for that room.
+// If no room is available, it finds the earliest available room and updates its lastAvailable time accordingly.
 function mostBooked2(n: number, meetings: number[][]): number {
   meetings.sort((a, b) => a[0] - b[0]); // Sorting the meetings by their start time
 
