@@ -19,7 +19,7 @@
 
 function maxMatrixSum(matrix: number[][]): number {
   // intuition: if we have odd number of negatives, we'll have 1 negative at the end
-  // if we have event number of negatives, then we can make all of them positive
+  // if we have even number of negatives, then we can make all of them positive
   // for odd number of negatives, we can make the min number in matrix the negative number
 
   const ROWS = matrix.length;
@@ -31,18 +31,22 @@ function maxMatrixSum(matrix: number[][]): number {
 
   for (let x = 0; x < ROWS; x++) {
     for (let y = 0; y < COLS; y++) {
-      const num = matrix[x][y];
+      const num = matrix[x][y]; // current number
 
       if (num < 0) {
+        //check if num is negative
+        // increment the number of negatives and take the mod 2 to get 0 or 1
         numNegatives = (numNegatives + 1) % 2;
       }
 
+      // calculate the absolute value of the number and add it to the sum
       const absNum = Math.abs(num);
 
       sum += absNum;
-      minNum = Math.min(minNum, absNum);
+      minNum = Math.min(minNum, absNum); // update the minimum number in the matrix
     }
   }
 
+  // return the sum if the number of negatives is even, otherwise subtract minNum * 2 from the sum
   return numNegatives % 2 === 0 ? sum : sum - minNum * 2;
 }
