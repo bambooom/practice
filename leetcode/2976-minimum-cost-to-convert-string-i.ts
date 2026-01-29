@@ -27,7 +27,7 @@
 
 // shorted-path
 // https://leetcode.com/problems/minimum-cost-to-convert-string-i/solutions/5542944/100-run-time-solution-with-java-javascript-typescript/?envType=daily-question&envId=2024-07-27
-function minimumCost(
+function minimumCostI(
   source: string,
   target: string,
   original: string[],
@@ -41,7 +41,7 @@ function minimumCost(
   const dist: number[][] = Array.from({ length: ALPHABET_SIZE }, () =>
     Array(ALPHABET_SIZE).fill(INF),
   );
-
+  // Set the diagonal elements of the distance matrix to zero, as the cost of transforming a letter to itself is zero.
   for (let i = 0; i < ALPHABET_SIZE; i++) {
     dist[i][i] = 0;
   }
@@ -53,6 +53,8 @@ function minimumCost(
     dist[from][to] = Math.min(dist[from][to], cost[i]);
   }
 
+  // Floyd-Warshall Algorithm is a graph algorithm used to find the shortest paths between all pairs of vertices in a weighted graph
+  // The algorithm works by iteratively improving the estimates of the shortest path between all pairs of vertices. It starts with the direct costs (single-step paths) and then considers all possible intermediate vertices to refine the path lengths.
   // Apply Floyd-Warshall Algorithm: Compute the shortest paths between all pairs of letters to find the minimum transformation costs.
   for (let k = 0; k < ALPHABET_SIZE; k++) {
     for (let i = 0; i < ALPHABET_SIZE; i++) {
@@ -70,10 +72,12 @@ function minimumCost(
     const srcChar = source[i].charCodeAt(0) - 'a'.charCodeAt(0);
     const tgtChar = target[i].charCodeAt(0) - 'a'.charCodeAt(0);
 
+    // If the transformation is impossible, return -1.
     if (dist[srcChar][tgtChar] === INF) {
       return -1;
     }
 
+    // Add the minimum cost to the total cost.
     totalCost += dist[srcChar][tgtChar];
   }
 
